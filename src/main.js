@@ -1,7 +1,10 @@
-import './style.css'
+import './styles/style.css'
+import './styles/header-footer.css'
+import './header-footer.js'  
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
+import { fetchRequest } from './api/api.js'
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -22,3 +25,8 @@ document.querySelector('#app').innerHTML = `
 `
 
 setupCounter(document.querySelector('#counter'))
+fetchRequest("people").then(result => {
+  console.log(result);
+}).catch(error => {
+  console.error("Error fetching data:", error);
+});
