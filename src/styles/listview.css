@@ -55,3 +55,15 @@
     margin-block-start: 0;
     margin-block-end: 0.5rem;
 }
+
+@media (min-width: 551px) {
+    .listlayout-item {
+       width: calc(33% - 0.95rem);
+    }
+}
+
+@media (min-width: 768px) {
+    .listlayout-item {
+       width: calc(25% - 1.15rem);
+    }
+}
