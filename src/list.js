@@ -1,4 +1,5 @@
 import { fetchRequest } from "./api/api";
+import "./styles/listview.css";
 
 window.addEventListener("load", () => {
     const urlParams = new URLSearchParams(window.location.search);
