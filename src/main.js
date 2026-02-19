@@ -4,7 +4,6 @@ import './header-footer.js'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
-import { fetchRequest } from './api/api.js'
 
 let app = document.querySelector('#app');
 if (app){
@@ -28,8 +27,3 @@ if (app){
 }
 
 setupCounter(document.querySelector('#counter'))
-fetchRequest("people").then(result => {
-  console.log(result);
-}).catch(error => {
-  console.error("Error fetching data:", error);
-});
