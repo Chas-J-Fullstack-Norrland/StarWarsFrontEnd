@@ -1,6 +1,7 @@
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 
+
 window.addEventListener("load", () => {
     document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="./styles/header-footer.css">`);
     
@@ -14,13 +15,13 @@ window.addEventListener("load", () => {
       </section>
 
       <nav id="category_nav">
-          <a href="#">Home</a>  | 
-          <a href="#">People</a>  | 
-          <a href="#">Planets</a>  | 
-          <a href="#">Starships</a>  | 
-          <a href="#">Vehicles</a>  | 
-          <a href="#">Species</a>  | 
-          <a href="#">Films</a>
+          <a href="index.html">Home</a>  | 
+          <a href="list.html?category=people">People</a>  | 
+          <a href="list.html?category=planets">Planets</a>  | 
+          <a href="list.html?category=starships">Starships</a>  | 
+          <a href="list.html?category=vehicles">Vehicles</a>  | 
+          <a href="list.html?category=species">Species</a>  | 
+          <a href="list.html?category=films">Films</a>
       </nav>`;
 
     footer.innerHTML = `
