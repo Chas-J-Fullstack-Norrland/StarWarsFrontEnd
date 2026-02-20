@@ -23,11 +23,6 @@ export async function apiRequest(requestUrl, options = {}) {
   if (!response.ok) {
     throw new Error(`API error: ${response.status}`);
   }
-  try {
     const responseData = await response.json();
     return responseData;
-
-  } catch (error) {
-    throw error;
-  }
 }
