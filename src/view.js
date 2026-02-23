@@ -1,5 +1,5 @@
 import "./styles/view.css";
-import {fetchRequest} from "./api/api.js";
+import {resolveAPILink,fetchRequest} from "./api/api.js";
 
 const nameHeader = document.getElementById("item-name-header");
 const attributesList = document.getElementById("item-attributes");
@@ -148,19 +148,3 @@ function formatStarshipData(item){
                 `;
 }
 
-async function resolveAPILink(string) {
-    const url = new URL(string);
-    const parts = url.pathname.split("/").filter(Boolean);
-
-    const resource = parts[1];
-    const id = parts[2];
-
-    try {
-        const item = await fetchRequest(`${resource}/${id}`);
-
-        return `<a href="view.html?category=${resource}&id=${id}">${item.name}</a>`;
-    } catch (error) {
-        console.error("Error fetching item:", error);
-        return ``;
-    }
-}
