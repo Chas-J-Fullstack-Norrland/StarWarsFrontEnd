@@ -1,24 +1,24 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const app = document.querySelector('#app')
 
-setupCounter(document.querySelector('#counter'))
+app.innerHTML = `
+<header class="bg-black p-4 shadow">
+<h1 class="text-2x1 font-bold">Star Wars Explorer</h1>
+</header>
+
+<main class="p-4">
+<section>
+<h2 class="text-xl mb-4">Characters</h2>
+
+<input
+id="search"
+placeholder="Search character..."
+class="w-full p-2 rounded text-black"
+aria-label="Search characters"
+/>
+
+<ul id="character-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+</ul>
+</section>
+</main>
