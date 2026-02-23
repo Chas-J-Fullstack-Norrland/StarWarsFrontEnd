@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
 
 function renderResponse(category,id) {
     const endpoint = category+"/"+id;
-    fetchRequest(endpoint,category)
+    fetchRequest(endpoint)
         .then(item => {
             mapItem(item,category);
         })
@@ -65,18 +65,21 @@ function formatFilmsData(item){
     itemTextbox.innerText=item.openingcrawl;
 }
 
-function formatPeopleData(item){
+async function formatPeopleData(item) {
     nameHeader.innerHTML = item.name;
-        attributesList.innerHTML =`
-                <li>Height: ${item.height}</li>
-                <li>Mass: ${item.mass}</li>
-                <li>Hair Color: ${item.hair_color}</li>
-                <li>Skin Color: ${item.skin_color}</li>
-                <li>Eye Color: ${item.eye_color}</li>
-                <li>Birth Year: ${item.birth_year}</li>
-                <li>Gender: ${item.gender}</li>
-                <li>Homeworld: ${item.homeworld}</li>
-                `;
+
+    const homeworldLink = await resolveAPILink(item.homeworld);
+
+    attributesList.innerHTML = `
+        <li>Height: ${item.height}</li>
+        <li>Mass: ${item.mass}</li>
+        <li>Hair Color: ${item.hair_color}</li>
+        <li>Skin Color: ${item.skin_color}</li>
+        <li>Eye Color: ${item.eye_color}</li>
+        <li>Birth Year: ${item.birth_year}</li>
+        <li>Gender: ${item.gender}</li>
+        <li>Homeworld: ${homeworldLink}</li>
+    `;
 }
 
 function formatPlanetsData(item){
@@ -92,8 +95,11 @@ function formatPlanetsData(item){
                 `;
 }
 
-function formatSpeciesData(item){
+async function formatSpeciesData(item){
     nameHeader.innerHTML = item.name;
+
+        const homeworldLink = await resolveAPILink(item.homeworld);
+
         attributesList.innerHTML =`
                 <li>Classification: ${item.classification}</li>
                 <li>Designation: ${item.designation}</li>
@@ -103,7 +109,8 @@ function formatSpeciesData(item){
                 <li>Eye Colors: ${item.eye_colors}</li>
                 <li>Average Lifespan: ${item.average_lifespan}</li>
                 <li>Language: ${item.language}</li>
-                <li>Homeworld: ${item.homeworld}</li>
+
+                <li>Homeworld: ${homeworldLink}</li>
                 `;
 }
 
@@ -139,4 +146,21 @@ function formatStarshipData(item){
                 <li>Cargo Capacity: ${item.cargo_capacity}</li>
                 <li>Consumables: ${item.consumables}</li>
                 `;
+}
+
+async function resolveAPILink(string) {
+    const url = new URL(string);
+    const parts = url.pathname.split("/").filter(Boolean);
+
+    const resource = parts[1];
+    const id = parts[2];
+
+    try {
+        const item = await fetchRequest(`${resource}/${id}`);
+
+        return `<a href="view.html?category=${resource}&id=${id}">${item.name}</a>`;
+    } catch (error) {
+        console.error("Error fetching item:", error);
+        return ``;
+    }
 }
