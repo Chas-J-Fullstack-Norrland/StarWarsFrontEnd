@@ -17,7 +17,7 @@ export async function fetchRequest(endpoint) {
   }
 }
 
-export async function apiRequest(requestUrl, options = {}) {
+async function apiRequest(requestUrl, options = {}) {
   const response = await fetch(requestUrl, options);
 
   if (!response.ok) {
