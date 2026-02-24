@@ -21,7 +21,8 @@ window.addEventListener("load", () => {
           <a href="list.html?category=starships">Starships</a>  | 
           <a href="list.html?category=vehicles">Vehicles</a>  | 
           <a href="list.html?category=species">Species</a>  | 
-          <a href="list.html?category=films">Films</a>
+          <a href="list.html?category=films">Films</a>  |
+          <a href="favorites.html">Favorites</a>  |
       </nav>`;
 
     footer.innerHTML = `

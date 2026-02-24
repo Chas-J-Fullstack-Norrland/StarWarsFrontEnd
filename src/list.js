@@ -1,5 +1,9 @@
 import { fetchRequest } from "./api/api";
 import "./styles/listview.css";
+import {
+   isFavorite,
+  toggleFavorite,
+} from "./favoritesStorage.js";
 
 window.addEventListener("load", () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -14,6 +18,7 @@ function renderList(endpoint, containerId) {
         .then(data => {
             const listItems = mapitems(data,endpoint);
             container.innerHTML = `<ul class="listlayout">${listItems}</ul>`;
+            attachFavoriteButtons(container, data, endpoint);
         })
         .catch(error => {
             console.error(`Error fetching ${endpoint}:`, error);
@@ -182,4 +187,31 @@ function translateURL(item){
     const url = new URL(item.url);
     const parts = url.pathname.split("/").filter(Boolean);
     return parts[2];
+}
+  function attachFavoriteButtons(container, data, category) {
+  const cards = container.querySelectorAll(".list-card");
+
+  cards.forEach((card, index) => {
+    const item = data[index];
+    if (!item) return;
+
+    const button = document.createElement("button");
+    button.className = "favorite-button";
+
+    const updateButton = () => {
+      const favorited = isFavorite(category, item);
+      button.textContent = favorited ? "★ Remove Favorite" : "☆ Add to Favorites";
+      button.classList.toggle("is-favorite", favorited);
+    };
+
+    updateButton();
+
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleFavorite(category, item);
+      updateButton();
+    });
+
+    card.querySelector(".card-body").appendChild(button);
+  });
 }

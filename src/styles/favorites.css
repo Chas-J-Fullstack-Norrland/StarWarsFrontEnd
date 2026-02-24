@@ -1,0 +1,35 @@
+/* Favorite Button Styles */
+.favorite-button {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ffd700;
+  background-color: transparent;
+  color: #ffd700;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.favorite-button:hover {
+  background-color: rgba(255, 215, 0, 0.2);
+}
+
+.favorite-button.is-favorite {
+  background-color: #ffd700;
+  color: #000;
+}
+
+.no-favorites {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.no-favorites h2 {
+  color: #ffd700;
+}
+
+.category-title {
+  color: #ffd700;
+  border-bottom: 1px solid #ffd700;
+  padding-bottom: 0.5rem;
+}
