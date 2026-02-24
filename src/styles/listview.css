@@ -38,8 +38,18 @@
     width: calc(50% - 0.75rem);
 }
 
+.card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.card-link:hover .list-card {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
 .list-card {
-    
+    cursor: pointer;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     display:block;
     width: 100%;
