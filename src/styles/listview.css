@@ -60,6 +60,18 @@
     padding :0;
 }
 
+.list-card button {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display:block;
+    height: 50px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding :0;
+    margin-bottom: 0px;
+
+}
+
 .card-body {
     padding: 1rem;
     margin-block-start: 0;

@@ -53,8 +53,8 @@ function formatFilmsData(data) {
     return data.map(item => {
         const id = translateURL(item)
         return `<li class="listlayout-item">
-                    <a href="view.html?category=films&id=${id}" class="card-link">
-                        <article class="list-card">
+                    <article class="list-card">
+                        <a href="view.html?category=films&id=${id}" class="card-link">
                             <figure class="card-figure card-image"></figure>
                             <div class="card-body">
                                 <h2 class="card-title">${item.title}</h2>
@@ -63,8 +63,8 @@ function formatFilmsData(data) {
                                 <p class="card-data">Director: ${item.director}</p>
                                 <p class="card-data">Producer: ${item.producer}</p>
                             </div>
-                        </article>
-                    </a>
+                        </a>
+                    </article>
                 </li>`
     }).join("");
 }
@@ -74,8 +74,8 @@ function formatSpeciesData(data) {
     return data.map(item => {
         const id = translateURL(item)
         return `<li class="listlayout-item">
-                    <a href="view.html?category=species&id=${id}" class="card-link">
-                        <article class="list-card">
+                    <article class="list-card">
+                        <a href="view.html?category=species&id=${id}" class="card-link">
                             <figure class="card-figure card-image"></figure>
                             <div class="card-body">
                                 <h2 class="card-title">${item.name}</h2>
@@ -85,8 +85,8 @@ function formatSpeciesData(data) {
                                 <p class="card-data">Average Lifespan: ${item.average_lifespan} years</p>
                                 <p class="card-data">Language: ${item.language}</p>
                             </div>
-                        </article>
-                    </a>
+                        </a>
+                    </article>
                 </li>`
     }).join("");
 }
@@ -97,8 +97,8 @@ function formatVehicleData(data) {
     return data.map(item => {
         const id = translateURL(item)
         return `<li class="listlayout-item">
-                    <a href="view.html?category=vehicle&id=${id}" class="card-link">
-                        <article class="list-card">
+                    <article class="list-card">
+                        <a href="view.html?category=vehicle&id=${id}" class="card-link">
                             <figure class="card-figure card-image"></figure>
                             <div class="card-body">
                                 <h2 class="card-title">${item.name}</h2>
@@ -108,8 +108,8 @@ function formatVehicleData(data) {
                                 <p class="card-data">Crew: ${item.crew}</p>
                                 <p class="card-data">Vehicle Class: ${item.vehicle_class}</p>
                             </div>
-                        </article>
-                    <a>
+                        </a>
+                    </article>
                 </li>`
     }).join("");
 }
@@ -119,8 +119,8 @@ function formatStarshipData(data) {
     return data.map(item => {
         const id = translateURL(item)
         return `<li class="listlayout-item">
-                    <a href="view.html?category=starships&id=${id}" class="card-link">
-                        <article class="list-card">
+                    <article class="list-card">
+                        <a href="view.html?category=starships&id=${id}" class="card-link">
                             <figure class="card-figure card-image"></figure>
                             <div class="card-body">
                                 <h2 class="card-title">${item.name}</h2>
@@ -131,8 +131,8 @@ function formatStarshipData(data) {
                                 <p class="card-data">Starship Class: ${item.starship_class}</p>
                                 <p class="card-data">Hyperdrive Rating: ${item.hyperdrive_rating}</p>
                             </div>
-                        </article>
-                    </a>
+                        </a>
+                    </article>
                 </li>`
     }).join("");
 }
@@ -144,19 +144,19 @@ function formatPlanetsData(data) {
         const id = translateURL(item)
         
         return `<li class="listlayout-item">
-                    <a href="view.html?category=planets&id=${id}" class="card-link">
-                        <article class="list-card">
-                        <figure class="card-figure card-image"></figure>
-                        <div class="card-body">
-                            <h2 class="card-title">${item.name}</h2>
-                            <p class="card-data">Diameter: ${item.diameter}km</p>
-                            <p class="card-data">Gravity: ${item.gravity}</p>
-                            <p class="card-data">Climate: ${item.climate}</p>
-                            <p class="card-data">Day-Length: ${item.rotation_period} hours</p>
-                            <p class="card-data">Population: ${item.population}</p>
-                        </div>
-                        </article>
-                    </a>
+                    <article class="list-card">
+                        <a href="view.html?category=planets&id=${id}" class="card-link">
+                            <figure class="card-figure card-image"></figure>
+                            <div class="card-body">
+                                <h2 class="card-title">${item.name}</h2>
+                                <p class="card-data">Diameter: ${item.diameter}km</p>
+                                <p class="card-data">Gravity: ${item.gravity}</p>
+                                <p class="card-data">Climate: ${item.climate}</p>
+                                <p class="card-data">Day-Length: ${item.rotation_period} hours</p>
+                                <p class="card-data">Population: ${item.population}</p>
+                            </div>
+                        </a>
+                    </article>
                 </li>`
     }).join("");
 }
@@ -168,8 +168,8 @@ function formatPeopleData(data) {
     const id = translateURL(item)
 
         return `<li class="listlayout-item">
-                    <a href="view.html?category=people&id=${id}" class="card-link">
-                        <article class="list-card">
+                    <article class="list-card">
+                        <a href="view.html?category=people&id=${id}" class="card-link">
                             <figure class="card-figure card-image"></figure>
                             <div class="card-body">
                                 <h2 class="card-title">${item.name}</h2>
@@ -177,8 +177,8 @@ function formatPeopleData(data) {
                                 <p class="card-data">Mass: ${item.mass}kg</p>
                                 <p class="card-data">birth year: ${item.birth_year}</p>
                             </div>
-                        </article>
-                    </a>
+                        </a>
+                    </article>
                 </li>`
     }).join("");
 }
@@ -212,6 +212,6 @@ function translateURL(item){
       updateButton();
     });
 
-    card.querySelector(".card-body").appendChild(button);
+    card.appendChild(button);
   });
 }
