@@ -17,8 +17,6 @@ let viewState = {
 
 window.addEventListener("load", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams.get("category"));
-    console.log(window.location.search)
     renderList(urlParams.get("category"), "list-section");
 });
 

@@ -64,7 +64,7 @@ describe('applyFilters', () => {
     const filters = [{ key: 'height', type: 'compare', operator: '<', value: '160' }];
     const result = applyFilters(filters, testData);
     // Leia 150-160 avg=155, R2-D2 96, Luke 172, Vader 202
-    expect(result.map(i => i.name)).toEqual(['R2-D2']);
+    expect(result.map(i => i.name)).toEqual(['Leia Organa','R2-D2']);
   });
 
   it('returns empty array when no match', () => {
