@@ -1,4 +1,75 @@
-:root {
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+body {
+margin: 0;
+font-family: system-ui, Helvetica, Arial, sans-serif;
+line-height: 1.5;
+background-color: #111;
+color: #f5f5f5;
+}
+img {
+max-width: 100%;
+display: block;
+}
+h1, h2, h3 {
+margin-top: 0;
+}
+h1 {
+font-size: 2rem;
+}
+p {
+margin: 0.5rem 0;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 1rem;
+}
+.twoColGrid {
+display: grid;
+gap: 1rem;
+grid-template-columns: 1fr;
+}
+.threeColGrid {
+display: grid;
+gap: 1rem;
+grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+.twoColGrid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.threeColGrid{
+grid-template-columns: repeat(3, 1fr);
+}
+}
+
+.card {
+background: #1e1e1e;
+padding: 1rem;
+border-radius: 8px;
+}
+.button {
+padding: 0.5rem 1rem;
+border-radius: 4px;
+border: none;
+cursor: pointer;
+}
+
+:focus {
+outline: 3px solid yellow;
+outline-offset: 2px;
+}
+.hidden {
+display: none;
+}
+/*:root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -94,3 +165,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+/*
