@@ -1,9 +1,19 @@
 import { fetchRequest } from "./api/api";
+import  {objectContainsSearch,applyFilters,extractFilterableKeys,detectFieldType,sortByKey} from "./filtersearchlist.js"
 import "./styles/listview.css";
 import {
    isFavorite,
   toggleFavorite,
 } from "./favoritesStorage.js";
+
+let currentData = [];
+let currentCategory = "";
+let viewState = {
+    search: "",
+    filters: [],
+    sortKey: null,
+    sortDir: "asc"
+};
 
 window.addEventListener("load", () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -14,16 +24,65 @@ window.addEventListener("load", () => {
 
 function renderList(endpoint, containerId) {
     const container = document.getElementById(containerId);
+    currentCategory = endpoint;
+
      fetchRequest(endpoint)
         .then(data => {
-            const listItems = mapitems(data,endpoint);
-            container.innerHTML = `<ul class="listlayout">${listItems}</ul>`;
-            attachFavoriteButtons(container, data, endpoint);
+            currentData = data; // store original data
+            const keys = extractFilterableKeys(data);
+            generateFilterDropdown(keys);
+            generateSortDropdown(keys);
+            renderData(currentData, containerId);
         })
         .catch(error => {
             console.error(`Error fetching ${endpoint}:`, error);
             container.innerHTML = "<p>Failed to load data.</p>";
         });
+}
+
+
+function renderData(data, containerId) {
+    const container = document.getElementById(containerId);
+    const listItems = mapitems(data, currentCategory);
+    container.innerHTML = `<ul class="listlayout">${listItems}</ul>`;
+    attachFavoriteButtons(container, data, currentCategory);
+}
+
+
+function updateView() {
+    // Start from the original currentData (API order)
+    let result = [...currentData];
+
+    // 1️⃣ Apply search
+    if (viewState.search) {
+        result = result.filter(item =>
+            objectContainsSearch(item, viewState.search)
+        );
+    }
+
+    // 2️⃣ Apply filters
+    if (viewState.filters.length) {
+        result = applyFilters(viewState.filters, result);
+    }
+
+    // 3️⃣ Apply sorting
+    if (viewState.sortKey) {
+        // Sort by selected key and direction
+        result = sortByKey(
+            viewState.sortKey,
+            result,
+            viewState.sortDir
+        );
+    } else {
+        // Default order: reverse if descending
+        if (viewState.sortDir === "desc") {
+            result.reverse(); // reverse the API order
+        }
+    }
+
+    // 4️⃣ Render final list
+    renderData(result, "list-section");
+    renderActiveFilters();
 }
 
 function mapitems(data,endpoint) {
