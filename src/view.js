@@ -70,7 +70,7 @@ function mapItem(data,category){
             break;
         default:
             console.warn(`Unknown item type: ${category}`);
-            nameHeader.innerText = "No item" // Fallback
+            nameHeader.innerText = "Failed to load data." // Fallback
         }
 }
 
@@ -99,6 +99,8 @@ async function formatPeopleData(item) {
         <li>Gender: ${item.gender}</li>
         <li>Homeworld: ${homeworldLink}</li>
     `;
+
+
 }
 
 function formatPlanetsData(item){
