@@ -26,7 +26,7 @@ function renderList(endpoint, containerId) {
     const container = document.getElementById(containerId);
     currentCategory = endpoint;
 
-     fetchRequest(endpoint)
+    fetchRequest(endpoint)
         .then(data => {
             currentData = data; // store original data
             const keys = extractFilterableKeys(data);
@@ -84,6 +84,141 @@ function updateView() {
     renderData(result, "list-section");
     renderActiveFilters();
 }
+
+    document.getElementById("searchInput")
+    .addEventListener("input", (e) => {
+
+        viewState.search = e.target.value;
+        updateView();
+    });
+
+    document.getElementById("filterType")
+    .addEventListener("change", (e) => {
+        const operatorSelect = document.getElementById("filterOperator");
+        operatorSelect.style.display =
+            e.target.value === "compare" ? "inline-block" : "none";
+    });
+    document.getElementById("clearFilters")
+    .addEventListener("click", () => {
+        viewState.filters = [];
+        viewState.search = "";
+        viewState.sortKey = null;
+        updateView();
+    });
+
+    document.getElementById("filterKey")
+    .addEventListener("change", (e) => {
+
+        const key = e.target.value;
+        if (!key) return;
+
+        const type = detectFieldType(currentData, key);
+
+        const filterTypeSelect = document.getElementById("filterType");
+        const compareOption = Array.from(filterTypeSelect.options)
+            .find(opt => opt.value === "compare");
+
+        if (type === "number") {
+        // Numeric → show compare
+        compareOption.style.display = "block";
+    } else {
+        // String → hide compare
+        compareOption.style.display = "none";
+
+        // If the current type was compare, switch to contains
+        if (filterTypeSelect.value === "compare") {
+            filterTypeSelect.value = "contains";
+        }
+
+    }
+});
+
+function renderActiveFilters() {
+    const container = document.getElementById("activeFilters");
+    container.innerHTML = ""; // clear previous buttons
+
+    if (viewState.filters.length === 0) return; // nothing to show
+
+    viewState.filters.forEach((filter, index) => {
+        const button = document.createElement("button");
+        button.className = "active-filter-btn";
+        button.textContent = `${filter.key} ${filter.type}${filter.type === "compare" ? ` ${filter.operator}` : ""}: ${filter.value} ✕`;
+
+        // Clicking removes this filter
+        button.addEventListener("click", () => {
+            viewState.filters.splice(index, 1);
+            updateView();          // re-render the list
+            renderActiveFilters(); // update buttons
+        });
+
+        container.appendChild(button);
+    });
+}
+
+
+
+const addFilterButton = document.getElementById("addFilterBtn");
+
+addFilterButton.addEventListener("click", () => {
+    const key = document.getElementById("filterKey").value;
+    const type = document.getElementById("filterType").value;
+    const operator = document.getElementById("filterOperator").value;
+    const value = document.getElementById("filterValue").value.trim();
+
+    if (!key || !type || !value) {
+        alert("Please select a key and type, and enter a value.");
+        return;
+    }
+
+    // Build the filter object
+    const filter = { key, type, operator, value };
+
+    // Add to viewState
+    viewState.filters.push(filter);
+
+    // Apply filters, search, and sorting
+    updateView();
+
+    // Clear the value input for next filter
+    document.getElementById("filterValue").value = "";
+});
+
+document.getElementById("sortSelect").addEventListener("change", (e) => {
+    viewState.sortKey = e.target.value;
+    updateView();
+});
+
+document.getElementById("sortDirection").addEventListener("change", (e) => {
+    viewState.sortDir = e.target.value;
+    console.log("Direction:", viewState.sortDir);
+    console.log("Key:", viewState.sortKey);
+    updateView();
+});
+
+
+function generateFilterDropdown(keys) {
+    const select = document.getElementById("filterKey");
+    select.innerHTML = '<option value="">Filter By...</option>';
+
+    keys.forEach(key => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = key;
+        select.appendChild(option);
+    });
+}
+
+function generateSortDropdown(keys) {
+    const select = document.getElementById("sortSelect");
+
+    keys.forEach(key => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = key;
+        select.appendChild(option);
+    });
+}
+
 
 function mapitems(data,endpoint) {
 
