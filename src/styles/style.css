@@ -119,4 +119,27 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+
+.favorite-btn {
+    background-color: #1a1a2e;
+    color: #ffd700;
+    border: 2px solid #ffd700;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+}
+
+.favorite-btn:hover {
+    background-color: #ffd700;
+    color: #1a1a2e;
+}
+
+.favorite-btn.favorited {
+    background-color: #ffd700;
+    color: #1a1a2e;
+}
+
 }
