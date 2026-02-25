@@ -1,5 +1,6 @@
 import { fetchRequest } from "./api/api";
 import "./styles/listview.css";
+import "./styles/favorites.css";
 import {
    isFavorite,
   toggleFavorite,
