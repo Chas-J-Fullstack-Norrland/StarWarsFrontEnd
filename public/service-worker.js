@@ -33,3 +33,25 @@ self.addEventListener('activate',event=>{
         )
     );
 });
+
+self.addEventListener('fetch',event  => {
+    const request = event.request;
+
+    if(request.url.includes("api") && request.url.startsWith(basePath)){
+        event.respondWith(
+            caches.match(request).then(cached=>{
+                if(cached) return cached;
+
+                return fetch(request).then(response=>{
+                    caches.open(cacheName).then(cache=> cache.put(request,response.clone()));
+                    return response;
+                }).catch(()=>{
+                    return new Response("online api not reachable while offline",{
+                        headers:{'Content-Type':'application/javascript'}
+                    });
+                });
+            })
+        );
+        return;
+    };
+});
