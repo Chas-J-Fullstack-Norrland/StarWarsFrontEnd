@@ -19,7 +19,10 @@ export default defineConfig({
 
   plugins:[
     VitePWA({
-      registerType: 'autoUpdate',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'service-worker.js',
+      injectRegister: "auto",
       manifest:{
         name: 'SWAPI ChasFrontend',
         short_name: 'SWAPI-CHAS',
