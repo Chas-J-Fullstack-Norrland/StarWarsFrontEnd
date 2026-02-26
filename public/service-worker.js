@@ -54,4 +54,20 @@ self.addEventListener('fetch',event  => {
         );
         return;
     };
+    if(request.url.includes('swapi.dev/api/')){  
+        event.respondWith(
+            fetch(request).then(response=>{
+                if(request.method === 'GET' && response.status === 200){
+                    const responseClone = response.clone();
+                    caches.open(cacheName).then(cache => cache.put(request,responseClone));
+                }
+                return  response;
+            }).catch(()=>caches.match(request))
+        );
+    return
+    }
+
+    event.respondWitch(
+        caches.match(request).then(cached=>cached||fetch(request))
+    );
 });
