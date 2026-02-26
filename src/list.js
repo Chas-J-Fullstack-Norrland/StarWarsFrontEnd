@@ -6,7 +6,7 @@ import {
   toggleFavorite,
 } from "./favoritesStorage.js";
 
-const categoryHeader = document.getElementsByTagName("h1");
+const categoryHeader = document.querySelector("h1");
 
 window.addEventListener("load", () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +30,7 @@ function renderList(endpoint, containerId) {
 }
 
 function mapitems(data,endpoint) {
-    categoryHeader.innerHTML = endpoint;
+    categoryHeader.innerText = endpoint;
 
 switch (endpoint) {
     
