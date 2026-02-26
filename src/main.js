@@ -21,3 +21,11 @@ if (app){
     </div>
   `;
 }
+
+
+if ('serviceworker' in navigator){
+  navigator.addEventListener('load',()=>{
+    const path = import.meta.env.BASE_URL + 'service-worker.js'
+    navigator.serviceWorker.register(path).catch(err => console.error("Failed to register serviceworker",err))
+  })
+}
