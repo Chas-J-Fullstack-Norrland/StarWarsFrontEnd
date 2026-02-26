@@ -6,6 +6,8 @@ import {
   toggleFavorite,
 } from "./favoritesStorage.js";
 
+const categoryHeader = document.getElementsByTagName("h1");
+
 window.addEventListener("load", () => {
     const urlParams = new URLSearchParams(window.location.search);
     console.log(urlParams.get("category"));
@@ -28,9 +30,10 @@ function renderList(endpoint, containerId) {
 }
 
 function mapitems(data,endpoint) {
-
+    categoryHeader.innerHTML = endpoint;
 
 switch (endpoint) {
+    
     case "starships":
         return formatStarshipData(data);
     case "planets":
