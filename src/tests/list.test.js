@@ -26,32 +26,18 @@ vi.mock("../favoritesStorage", async () => {
 });
 
 // Now import the script so the load listener is registered
+import "../list.js";
 
 describe("ListView load event", () => {
   let container;
 
-  beforeEach(async() => {
+  beforeEach(() => {
     // Setup DOM container BEFORE the load event
-      document.body.innerHTML = `
-        <h1></h1>
-        <div id="list-section"></div>
-        <input id="searchInput" />
-        <select id="filterKey"></select>
-        <select id="filterOperator"></select>
-        <select id="filterType"></select>
-        <input id="filterValue" />
-        <button id="addFilterBtn"></button>
-        <button id="clearFilters"></button>
-        <select id="sortSelect"></select>
-        <select id="sortDirection"></select>`;
+    document.body.innerHTML = `<div id="list-section"></div>`;
     container = document.getElementById("list-section");
 
     // Reset mocks
     vi.resetAllMocks();
-
-    await import("../list.js");
-
-    
   });
 
   it("renders people list on window load", async () => {
@@ -121,36 +107,4 @@ describe("ListView load event", () => {
     const button = list.querySelector(".favorite-button");
     expect(button.textContent).toBe("★ Remove Favorite");
   });
-
-
-  it("clears filters and search", async () => {
-    const peopleData = [
-      { name: "Luke Skywalker", url: "https://swapi.dev/api/people/1/" },
-      { name: "Leia Organa", url: "https://swapi.dev/api/people/5/" },
-    ];
-
-    api.fetchRequest.mockResolvedValue(peopleData);
-
-    window.history.pushState({}, "", "/?category=people");
-    await window.dispatchEvent(new Event("load"));
-    await Promise.resolve();
-
-    // Apply a search
-    const input = document.getElementById("searchInput");
-    input.value = "Leia";
-    input.dispatchEvent(new Event("input"));
-    await Promise.resolve();
-
-    // Clear filters
-    const clearBtn = document.getElementById("clearFilters");
-    clearBtn.dispatchEvent(new Event("click"));
-    await Promise.resolve();
-
-    const list = container.querySelector("ul.listlayout");
-    expect(list.children.length).toBe(2); // all restored
-  });
 });
-
-
-
-

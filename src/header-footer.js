@@ -8,7 +8,9 @@ window.addEventListener("load", () => {
     header.innerHTML = `
         <section id="user-section">
           <a href="#" class="logo">Star Wars API</a>
-          
+          <span id="current-user">no-user</span>
+          <input type="text" id="user" />
+          <button id="user-button">Set User</button>
           <span id="status">Online</span>
       </section>
 

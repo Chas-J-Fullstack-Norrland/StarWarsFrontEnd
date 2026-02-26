@@ -1,5 +1,4 @@
 import { fetchRequest } from "./api/api";
-import  {objectContainsSearch,applyFilters,extractFilterableKeys,detectFieldType,sortByKey} from "./filtersearchlist.js"
 import "./styles/listview.css";
 import "./styles/favorites.css";
 import {
@@ -7,33 +6,20 @@ import {
   toggleFavorite,
 } from "./favoritesStorage.js";
 
-let currentData = [];
-let currentCategory = "";
-let viewState = {
-    search: "",
-    filters: [],
-    sortKey: null,
-    sortDir: "asc"
-};
-
-const categoryHeader = document.querySelector("h1");
-
 window.addEventListener("load", () => {
     const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams.get("category"));
+    console.log(window.location.search)
     renderList(urlParams.get("category"), "list-section");
 });
 
 function renderList(endpoint, containerId) {
     const container = document.getElementById(containerId);
-    currentCategory = endpoint;
-
-    fetchRequest(endpoint)
+     fetchRequest(endpoint)
         .then(data => {
-            currentData = data; // store original data
-            const keys = extractFilterableKeys(data);
-            generateFilterDropdown(keys);
-            generateSortDropdown(keys);
-            renderData(currentData, containerId);
+            const listItems = mapitems(data,endpoint);
+            container.innerHTML = `<ul class="listlayout">${listItems}</ul>`;
+            attachFavoriteButtons(container, data, endpoint);
         })
         .catch(error => {
             console.error(`Error fetching ${endpoint}:`, error);
@@ -41,191 +27,10 @@ function renderList(endpoint, containerId) {
         });
 }
 
-
-function renderData(data, containerId) {
-    const container = document.getElementById(containerId);
-    const listItems = mapitems(data, currentCategory);
-    container.innerHTML = `<ul class="listlayout">${listItems}</ul>`;
-    attachFavoriteButtons(container, data, currentCategory);
-}
-
-
-function updateView() {
-    // Start from the original currentData (API order)
-    let result = [...currentData];
-
-    // 1️⃣ Apply search
-    if (viewState.search) {
-        result = result.filter(item =>
-            objectContainsSearch(item, viewState.search)
-        );
-    }
-
-    // 2️⃣ Apply filters
-    if (viewState.filters.length) {
-        result = applyFilters(viewState.filters, result);
-    }
-
-    // 3️⃣ Apply sorting
-    if (viewState.sortKey) {
-        // Sort by selected key and direction
-        result = sortByKey(
-            viewState.sortKey,
-            result,
-            viewState.sortDir
-        );
-    } else {
-        // Default order: reverse if descending
-        if (viewState.sortDir === "desc") {
-            result.reverse(); // reverse the API order
-        }
-    }
-
-    // 4️⃣ Render final list
-    renderData(result, "list-section");
-    renderActiveFilters();
-}
-
-    document.getElementById("searchInput")
-    .addEventListener("input", (e) => {
-
-        viewState.search = e.target.value;
-        updateView();
-    });
-
-    document.getElementById("filterType")
-    .addEventListener("change", (e) => {
-        const operatorSelect = document.getElementById("filterOperator");
-        operatorSelect.style.display =
-            e.target.value === "compare" ? "inline-block" : "none";
-    });
-    document.getElementById("clearFilters")
-    .addEventListener("click", () => {
-        viewState.filters = [];
-        viewState.search = "";
-        viewState.sortKey = null;
-        updateView();
-    });
-
-    document.getElementById("filterKey")
-    .addEventListener("change", (e) => {
-
-        const key = e.target.value;
-        if (!key) return;
-
-        const type = detectFieldType(currentData, key);
-
-        const filterTypeSelect = document.getElementById("filterType");
-        const compareOption = Array.from(filterTypeSelect.options)
-            .find(opt => opt.value === "compare");
-
-        if (type === "number") {
-        // Numeric → show compare
-        compareOption.style.display = "block";
-    } else {
-        // String → hide compare
-        compareOption.style.display = "none";
-
-        // If the current type was compare, switch to contains
-        if (filterTypeSelect.value === "compare") {
-            filterTypeSelect.value = "contains";
-        }
-
-    }
-});
-
-function renderActiveFilters() {
-    const container = document.getElementById("activeFilters");
-    container.innerHTML = ""; // clear previous buttons
-
-    if (viewState.filters.length === 0) return; // nothing to show
-
-    viewState.filters.forEach((filter, index) => {
-        const button = document.createElement("button");
-        button.className = "active-filter-btn";
-        button.textContent = `${filter.key} ${filter.type}${filter.type === "compare" ? ` ${filter.operator}` : ""}: ${filter.value} ✕`;
-
-        // Clicking removes this filter
-        button.addEventListener("click", () => {
-            viewState.filters.splice(index, 1);
-            updateView();          // re-render the list
-            renderActiveFilters(); // update buttons
-        });
-
-        container.appendChild(button);
-    });
-}
-
-
-
-const addFilterButton = document.getElementById("addFilterBtn");
-
-addFilterButton.addEventListener("click", () => {
-    const key = document.getElementById("filterKey").value;
-    const type = document.getElementById("filterType").value;
-    const operator = document.getElementById("filterOperator").value;
-    const value = document.getElementById("filterValue").value.trim();
-
-    if (!key || !type || !value) {
-        alert("Please select a key and type, and enter a value.");
-        return;
-    }
-
-    // Build the filter object
-    const filter = { key, type, operator, value };
-
-    // Add to viewState
-    viewState.filters.push(filter);
-
-    // Apply filters, search, and sorting
-    updateView();
-
-    // Clear the value input for next filter
-    document.getElementById("filterValue").value = "";
-});
-
-document.getElementById("sortSelect").addEventListener("change", (e) => {
-    viewState.sortKey = e.target.value;
-    updateView();
-});
-
-document.getElementById("sortDirection").addEventListener("change", (e) => {
-    viewState.sortDir = e.target.value;
-    console.log("Direction:", viewState.sortDir);
-    console.log("Key:", viewState.sortKey);
-    updateView();
-});
-
-
-function generateFilterDropdown(keys) {
-    const select = document.getElementById("filterKey");
-    select.innerHTML = '<option value="">Filter By...</option>';
-
-    keys.forEach(key => {
-        const option = document.createElement("option");
-        option.value = key;
-        option.textContent = key;
-        select.appendChild(option);
-    });
-}
-
-function generateSortDropdown(keys) {
-    const select = document.getElementById("sortSelect");
-
-    keys.forEach(key => {
-        const option = document.createElement("option");
-        option.value = key;
-        option.textContent = key;
-        select.appendChild(option);
-    });
-}
-
-
 function mapitems(data,endpoint) {
-    categoryHeader.innerText = endpoint;
+
 
 switch (endpoint) {
-    
     case "starships":
         return formatStarshipData(data);
     case "planets":
