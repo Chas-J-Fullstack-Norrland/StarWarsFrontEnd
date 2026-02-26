@@ -10,32 +10,6 @@
 
 }
 
-#controls {
-    background-color: rgba(0,0,0,0.15);
-    padding: 30px;
-}
-
-.active-filters-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 12px;
-    
-}
-
-.active-filter-btn {
-    background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.active-filter-btn:hover {
-    background-color: #ddd;
-}
-
 #list-section {
     display: block;
     margin-inline-start: .5em;
@@ -107,26 +81,6 @@
 .card-body p {
     margin-block-start: 0;
     margin-block-end: 0.5rem;
-}
-
-.active-filters-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.active-filter-btn {
-    background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.active-filter-btn:hover {
-    background-color: #ddd;
 }
 
 @media (min-width: 551px) {
