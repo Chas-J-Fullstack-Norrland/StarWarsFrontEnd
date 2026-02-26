@@ -31,7 +31,7 @@ function renderAllFavorites(containerId) {
 
     html += `
       <section class="favorites-category">
-        <h2 class="category-title">${capitalizeFirst(category)}</h2>
+        <h1 class="category-title">${capitalizeFirst(category)}</h2>
         <ul class="listlayout">
           ${formatFavoriteItems(items, category)}
         </ul>
