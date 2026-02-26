@@ -4,19 +4,83 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="manifest" href="%BASE_URL%manifest.webmanifest"/>
     
     <title>starwarsfrontend</title>
   </head>
   <body>
     <header id="header"></header>
+    <section id="controls">
+        <div>
+            <!-- 🔎 Search -->
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search everything..."
+            />
+        </div>
+        <hr>
+        <div>
+            <!-- 🔽 Filter Key -->
+            <select id="filterKey">
+                <option value="">Filter By...</option>
+            </select>
 
-    <!--  this header will be updated depending on what endpoint is called -->
-    <h1></h1>
-    <section id="list-section">
-        Something did not load correctly. Please try again later.
-            <!-- list items will be dynamically inserted here -->
+            <!-- 🔽 Filter Type -->
+            <select id="filterType">
+                <option value="contains">Contains</option>
+                <option value="exact">Exact</option>
+                <option hidden value="compare">Compare</option>
+            </select>
+
+            <!-- 🔽 Operator (for comparison only) -->
+            <select style="display:none" id="filterOperator">
+                <option value=">">Greater Than</option>
+                <option value="<">Less Than</option>
+                <option value=">=">Greater or Equal</option>
+                <option value="<=">Less or Equal</option>
+                <option value="=">Equal</option>
+            </select>
+            
+
+            <!-- 🔢 Value -->
+            <input 
+                type="text" 
+                id="filterValue" 
+                placeholder="Value"
+            />
+            
+
+            <button id="addFilterBtn">Add Filter</button>
+        </div>
+        <hr>
+        <div>
+            <!-- 🔽 Sort -->
+            <select id="sortSelect">
+                <option value="">Sort By...</option>
+            </select>
+            <select id="sortDirection">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+
+        </div> 
+        <hr>
+        <div>
+            <div id="activeFilters" class="active-filters-row"></div>
+            <button id="clearFilters">Clear All</button>
+        </div>
+        
     </section>
+
+
+    
+
+    <main>
+        <!--  this header will be updated depending on what endpoint is called -->
+        <h1></h1>
+        <!-- list items will be dynamically inserted here -->
+        <section id="list-section"></section>
+    </main>
 
 
     <footer></footer>

@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="manifest" href="%BASE_URL%manifest.webmanifest"/>
     
     <title>starwarsfrontend</title>
   </head>
@@ -13,20 +12,21 @@
 
     <!--  this header will be be the name of the item being viewed -->
     
-    
-    <div id="item-header">
-        <div>
-            <h1 id="item-name-header"></h1>
-            <ul id="item-attributes"></ul>
-        </div>
-        <div>
-            <img id="item-thumbnail" src="https://dummyimage.com/840/fff/0011ff.png&text=placeholder" />
-            <button id="favorite-button">favorite</button>
-        </div>        
-        
-    </div>
-    <hr>
-    <section id="item-textbox"></section>
+    <main>
+      <div id="item-header">
+          <div>
+              <h1 id="item-name-header"></h1>
+              <ul id="item-attributes"></ul>
+          </div>
+          <span>
+              <img id="item-thumbnail" alt="Thumbnail"  src="https://dummyimage.com/840/fff/0011ff.png&text=placeholder" />
+              <button id="favorite-button">favorite</button>
+          </span>        
+          
+      </div>
+      <hr>
+      <section id="item-textbox"></section>
+    </main>
 
 
     <footer></footer>

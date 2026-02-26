@@ -22,7 +22,7 @@ body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #0009b0;
   text-decoration: inherit;
 }
 a:hover {
@@ -46,7 +46,6 @@ header {
     color: white;
     font-size: 2.2em;
     padding: 20px;
-    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
