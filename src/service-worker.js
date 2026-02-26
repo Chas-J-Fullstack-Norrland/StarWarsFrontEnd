@@ -37,7 +37,7 @@ self.addEventListener('fetch',event  => {
     return
     }
 
-    event.respondWitch(
+    event.respondWith(
         caches.match(request).then(cached=>cached||fetch(request))
     );
 });
