@@ -15,7 +15,7 @@ function renderAllFavorites(containerId) {
   if (categories.length === 0 || categories.every(cat => allFavorites[cat].length === 0)) {
     container.innerHTML = `
       <div class="no-favorites">
-        <h2>No Favorites Yet</h2>
+        <h1>No Favorites Yet</h2>
         <p>Browse categories and add items to your favorites!</p>
         <a href="index.html" class="back-link">Back to Home</a>
       </div>
