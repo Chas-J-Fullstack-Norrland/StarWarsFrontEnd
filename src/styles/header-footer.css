@@ -23,45 +23,41 @@
   text-decoration: underline;
 }
 
-#user {
+#status {
     background: rgba(255,255,255,0.2);
     padding: 8px 8px;
     border-radius: 4px;
-    font-size: 0.4em;
+    font-size: 0.7em;
     font-weight: 500;
     vertical-align: middle;
 }
 
-#user-section {
+body.online #status {
+    background: yellow;
+    color: black;
+}
+
+body.offline #status {
+    background: red;
+    color: black;
+}
+
+#header-logo-section {
+    width: 100%;
     margin-right: 8px;
     align-items: center;
     color: yellow;  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#user-section a {
+#header-logo-section a {
     margin-left: 8px;
     color: yellow;
     text-decoration: none;
 }
 
-#current-user {
-    background: rgba(255,255,255,0.2);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.5em;
-    font-weight: 200;
-    vertical-align: middle;
-}
-
-#user-button {
-    background: #3f3f32;
-    color: yellow;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 8px;
-    font-size: 0.4em;
-    font-weight: 500;
-    cursor: pointer;
-    vertical-align: middle;
-    transition: background-color 0.2s;
+#header-logo-section a:hover {
+  filter: drop-shadow(0 0 2em yellow);
 }
