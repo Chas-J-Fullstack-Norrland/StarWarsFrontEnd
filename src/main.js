@@ -25,10 +25,21 @@ setupCounter(document.querySelector('#counter'))
 ?*/
 const app = document.querySelector('#app')
 
-app.innerHTML =
+app.innerHTML = `
 <main class="container">
-<header>
+<header class="header">
 <h1>Star Wars Explorer</h1>
+</header>
+
+<div
+id="network-status"
+class="network-status"
+role="status"
+aria-live="polite"
+>
+<span class="status-dot"></span>
+<span class="status-text"><Checking...</span>
+</div>
 </header>
 
 <section>
@@ -39,8 +50,26 @@ id="search"
 placeholder="Search character"
 />
 <section
-id="character-list"
-class="threeColGrid">
-</section>
+ id="character-list"
+ class="threeColGrid">
+ </section>
 </section>
 </main>
+`
+const statusElement = document.getElementById("network-status");
+const statusText = statusElement.querySelector(".status-text");
+
+function updateNetworkStatus() {
+if (navigator.online) {
+statusElement.classList.remove("offline");
+statusElement.classList.add("online");
+statusText.textContent = "Online";
+} else {
+statusElement.classList.remove("online");
+statusElement.classList.add("offline");
+statusText.textContent = "Offline";
+}
+}
+updateNetworkStatus();
+window.addEventListener("online", updateNetworkStatus);
+window.addEventListener("offline", updateNetworkStatus);

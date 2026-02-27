@@ -69,6 +69,29 @@ outline-offset: 2px;
 .hidden {
 display: none;
 }
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.network-status {
+display: flex;
+align-items: center;
+gap:0.5rem;
+font-size: 0.9rem;
+}
+.status-dot {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background-color: gray;
+}
+.online .status-dot {
+background-color: #22c55e;
+}
+.offline .status-dot {
+background-color: #ef4444;
+}
 /*:root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
