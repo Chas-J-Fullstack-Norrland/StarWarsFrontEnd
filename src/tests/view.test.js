@@ -12,6 +12,7 @@ describe('View module', () => {
   beforeEach(async () => {
     // Set up the DOM
     document.body.innerHTML = `
+      <button class="favorite-button" id="favorite-button">☆ Add Favorite</button>
       <h1 id="item-name-header"></h1>
       <ul id="item-attributes"></ul>
       <textarea id="item-textbox"></textarea>
