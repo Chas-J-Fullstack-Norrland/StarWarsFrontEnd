@@ -1,9 +1,7 @@
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 
-
-window.addEventListener("load", () => {
-    document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="./styles/header-footer.css">`);
+//document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="./styles/header-footer.css">`);
     
     header.innerHTML = `
         <section id="user-section">
@@ -25,5 +23,3 @@ window.addEventListener("load", () => {
 
     footer.innerHTML = `
         <p>Chas Academy - Norrland 2026</p>`;
-
-});

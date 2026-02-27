@@ -37,6 +37,7 @@
 }
 
 #list-section {
+    min-height: 800px;
     display: block;
     margin-inline-start: .5em;
     margin-inline-end: .5em;
