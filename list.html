@@ -16,7 +16,6 @@
 
       <!-- 🔎 SEARCH (Semantic landmark) -->
       <search aria-label="Search items">
-        <form>
           <label for="searchInput">Search this category</label>
           <input 
             type="search" 
@@ -24,50 +23,49 @@
             name="search"
             placeholder="Search this category..."
           />
-        </form>
       </search>
 
-      <hr>
-
       <!-- 🔽 FILTER -->
-      <form aria-labelledby="filterLegend">
+      <form id="filterform" aria-labelledby="filterLegend">
         <fieldset>
-
           <legend id="filterLegend">Filter</legend>
-
-          <label for="filterKey">Filter field</label>
-          <select id="filterKey" class="keyselection" name="filterKey">
-            <option value="">Filter By...</option>
-          </select>
-        <div>
-          <label for="filterType">Filter type</label>
-          <select id="filterType" name="filterType">
-            <option value="contains">Contains</option>
-            <option value="exact">Exact</option>
-            <option hidden value="compare">Compare</option>
-          </select>
-
-          <label for="filterOperator" hidden id="filterOperatorLabel">
-            Comparison operator
-          </label>
-          <select hidden id="filterOperator" name="filterOperator">
-            <option value=">">Greater Than</option>
-            <option value="<">Less Than</option>
-            <option value=">=">Greater or Equal</option>
-            <option value="<=">Less or Equal</option>
-            <option value="=">Equal</option>
-          </select>
-
-          <label for="filterValue">Filter value</label>
-          <input 
-            type="text" 
-            id="filterValue" 
-            name="filterValue"
-            placeholder="Value"
-          />
-          
-
-          <button type="button" id="addFilterBtn">Add Filter</button>
+          <div class="responsive-div">
+            <div>
+              <label for="filterKey">Filter field</label>
+              <select id="filterKey" class="keyselection" name="filterKey">
+                <option value="">Filter By...</option>
+              </select>
+            </div>
+            <div>
+              <label for="filterType">Filter type</label>
+              <select id="filterType" name="filterType">
+                <option value="contains">Contains</option>
+                <option value="exact">Exact</option>
+                <option hidden value="compare">Compare</option>
+              </select>
+                          <label for="filterOperator" hidden id="filterOperatorLabel">
+              Comparison operator
+            </label>
+            <select hidden id="filterOperator" name="filterOperator">
+              <option value=">">Greater Than</option>
+              <option value="<">Less Than</option>
+              <option value=">=">Greater or Equal</option>
+              <option value="<=">Less or Equal</option>
+              <option value="=">Equal</option>
+            </select>
+            </div>
+          </div>  
+          <div class="responsive-div">
+            <div>
+            <label for="filterValue">Filter value</label>
+            <input 
+              type="text" 
+              id="filterValue" 
+              name="filterValue"
+              placeholder="Value"
+            />
+            </div>
+            <button type="submit" class="filterbutton" id="addFilterBtn">Add Filter</button>
           </div>
         </fieldset>
       </form>
@@ -75,7 +73,6 @@
       <hr>
 
       <!-- 🔽 SORT -->
-      <form aria-labelledby="sortLegend">
         <fieldset>
           <legend id="sortLegend">Sort</legend>
 
@@ -90,21 +87,20 @@
             <option value="desc">Descending</option>
           </select>
         </fieldset>
-      </form>
 
       <hr>
 
       <!-- Active Filters -->
-      <section aria-label="Active filters">
+      <section class="responsive-div" aria-label="Active filters">
         <div id="activeFilters" class="active-filters-row"></div>
-        <button type="button" id="clearFilters">Clear All</button>
+        <button type="button" class="filterbutton" id="clearFilters">Clear All</button>
       </section>
 
     </section>
 
     <main>
       <h1>Loading...</h1>
-      <section id="list-section" aria-live="polite"></section>
+      <section class="list-section" id="list-section" aria-live="polite"></section>
     </main>
 
     <footer>
