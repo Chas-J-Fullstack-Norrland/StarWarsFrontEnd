@@ -47,11 +47,15 @@ function formatFavoriteItems(items, category) {
   return items.map((item, index) => {
     const name = item.name || item.title || "Unknown";
     const details = getItemDetails(item, category);
+    
+    const parts = item.url.split("/").filter(Boolean);
+    const urlID = parts[parts.length - 1];
 
     // Fixed: added return statement with HTML
     return `
       <li class="listlayout-item">
         <article class="list-card favorite-card" data-category="${category}" data-index="${index}">
+          <a href="view.html?category=${category}&id=${urlID}" class="card-link">
           <figure class="card-figure card-image"></figure>
           <div class="card-body">
             <h3 class="card-title">${name}</h3>
