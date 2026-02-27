@@ -1,3 +1,4 @@
+import "./styles/favorites.css";
 import "./styles/view.css";
 import {resolveAPILink,fetchRequest} from "./api/api.js";
 import { isFavorite, toggleFavorite } from "./favoritesStorage.js";
@@ -6,33 +7,32 @@ const nameHeader = document.getElementById("item-name-header");
 const attributesList = document.getElementById("item-attributes");
 //const itemThumbnail = document.getElementById("item-thumbnail");
 const itemTextbox = document.getElementById("item-textbox");
-const favoriteButton = document.getElementById("favorite-button")
+const favoriteButton = document.getElementById("favorite-button");
 
-let currentCategory = null;
-let currentId = null;
+let currentItem = null;
+const urlParams = new URLSearchParams(window.location.search);
+const category = urlParams.get("category");
 
 
 
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams.get("category"));
-        console.log(urlParams.get("id"));
-    console.log(window.location.search)
     renderResponse(urlParams.get("category"),urlParams.get("id"));
 });
 
-favoriteButton?.addEventListener("click", () => {
-    if (currentCategory && currentId) {
-        toggleFavorite(currentCategory, currentId);
+favoriteButton.addEventListener("click", () => {
+    if (category && currentItem) {
+        toggleFavorite(category, currentItem);
         updateFavoriteButton();
     }
 });
 
 function updateFavoriteButton() {
-    if (favoriteButton && currentCategory && currentId) {
-        const favorited = isFavorite(currentCategory, currentId);
-        favoriteButton.textContent = favorited ? "★ Remove from Favorites" : "☆ Add to Favorites";
+    if (favoriteButton && category && currentItem) {
+        const favorited = isFavorite(category, currentItem);
+        favoriteButton.textContent = favorited ? "★ Remove Favorite" : "☆ Add Favorite";
         favoriteButton.classList.toggle("favorited", favorited);
+        favoriteButton.setAttribute("aria-pressed", String(favorited));
     }
 }
 
@@ -40,11 +40,14 @@ function renderResponse(category,id) {
     const endpoint = category+"/"+id;
     fetchRequest(endpoint)
         .then(item => {
+            currentItem = item;
             mapItem(item,category);
+            updateFavoriteButton();
         })
         .catch(error => {
             console.error(`Error fetching ${endpoint}:`, error);
             nameHeader.innerHTML = "Failed to load data.";
+            favoriteButton.hidden;
         });
 }
 

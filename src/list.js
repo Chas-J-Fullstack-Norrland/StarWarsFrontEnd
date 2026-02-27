@@ -157,16 +157,19 @@ function renderActiveFilters() {
 }
 
 
+const filterform = document.getElementById("filterform");
 
-const addFilterButton = document.getElementById("addFilterBtn");
-
-addFilterButton.addEventListener("click", () => {
+filterform.addEventListener("submit", (event) => {
+    event.preventDefault();
     const key = document.getElementById("filterKey").value;
     const type = document.getElementById("filterType").value;
     const operator = document.getElementById("filterOperator").value;
     const value = document.getElementById("filterValue").value.trim();
 
     if (!key || !type || !value) {
+        console.log(value)
+        console.log(key)
+        console.log(type)
         alert("Please select a key and type, and enter a value.");
         return;
     }
@@ -183,6 +186,7 @@ addFilterButton.addEventListener("click", () => {
     // Clear the value input for next filter
     document.getElementById("filterValue").value = "";
 });
+
 
 document.getElementById("sortSelect").addEventListener("change", (e) => {
     viewState.sortKey = e.target.value;
@@ -222,7 +226,7 @@ function generateSortDropdown(keys) {
 
 
 function mapitems(data,endpoint) {
-    categoryHeader.innerText = endpoint;
+    categoryHeader.innerText = endpoint.charAt(0).toUpperCase() + endpoint.slice(1);;
 
 switch (endpoint) {
     
@@ -294,7 +298,7 @@ function formatVehicleData(data) {
         const id = translateURL(item)
         return `<li class="listlayout-item">
                     <article class="list-card">
-                        <a href="view.html?category=vehicle&id=${id}" class="card-link">
+                        <a href="view.html?category=vehicles&id=${id}" class="card-link">
                             <figure class="card-figure card-image"></figure>
                             <div class="card-body">
                                 <h2 class="card-title">${item.name}</h2>
@@ -407,6 +411,8 @@ function translateURL(item){
       toggleFavorite(category, item);
       updateButton();
     });
+
+
 
     card.appendChild(button);
   });

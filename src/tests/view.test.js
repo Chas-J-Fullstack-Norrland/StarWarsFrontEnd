@@ -12,6 +12,7 @@ describe('View module', () => {
   beforeEach(async () => {
     // Set up the DOM
     document.body.innerHTML = `
+      <button class="favorite-button" id="favorite-button">☆ Add Favorite</button>
       <h1 id="item-name-header"></h1>
       <ul id="item-attributes"></ul>
       <textarea id="item-textbox"></textarea>
@@ -44,7 +45,7 @@ describe('View module', () => {
       window.history.pushState({}, '', '?category=films&id=1');
 
       // Trigger the load event manually
-      await window.dispatchEvent(new Event('load'));
+      await window.dispatchEvent(new Event('DOMContentLoaded'));
 
       expect(nameHeader.innerHTML).toBe('A New Hope');
       expect(attributesList.innerHTML).toContain('<li>Episode: 4</li>');
@@ -71,7 +72,7 @@ describe('View module', () => {
       window.history.pushState({}, '', '?category=people&id=1');
 
       // Trigger the load event manually
-      await window.dispatchEvent(new Event('load'));
+      await window.dispatchEvent(new Event('DOMContentLoaded'));
 
       await new Promise(process.nextTick);
 
@@ -98,7 +99,7 @@ describe('View module', () => {
       window.history.pushState({}, '', '?category=planets&id=1');
 
       // Trigger the load event manually
-      await window.dispatchEvent(new Event('load'));
+      await window.dispatchEvent(new Event('DOMContentLoaded'));
 
       expect(nameHeader.innerHTML).toBe('Tatooine');
       expect(attributesList.innerHTML).toContain('<li>Rotation Period: 23</li>');
@@ -110,7 +111,7 @@ describe('View module', () => {
       
       // Simulate a page load with an invalid category
       window.history.pushState({}, '', '?category=unknown&id=1');
-      await window.dispatchEvent(new Event('load'));
+      await window.dispatchEvent(new Event('DOMContentLoaded'));
 
       expect(nameHeader.innerText).toBe('Failed to load data.');
     });

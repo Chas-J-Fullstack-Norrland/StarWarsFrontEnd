@@ -15,7 +15,7 @@ function renderAllFavorites(containerId) {
   if (categories.length === 0 || categories.every(cat => allFavorites[cat].length === 0)) {
     container.innerHTML = `
       <div class="no-favorites">
-        <h1>No Favorites Yet</h2>
+        <h1>No Favorites Yet</h1>
         <p>Browse categories and add items to your favorites!</p>
         <a href="index.html" class="back-link">Back to Home</a>
       </div>
@@ -30,8 +30,8 @@ function renderAllFavorites(containerId) {
     if (items.length === 0) return;  // Fixed: added return statement
 
     html += `
-      <section class="favorites-category">
-        <h1 class="category-title">${capitalizeFirst(category)}</h2>
+      <section class="favorites-category list-section">
+        <h2 class="category-title">${capitalizeFirst(category)}</h2>
         <ul class="listlayout">
           ${formatFavoriteItems(items, category)}
         </ul>
@@ -47,11 +47,17 @@ function formatFavoriteItems(items, category) {
   return items.map((item, index) => {
     const name = item.name || item.title || "Unknown";
     const details = getItemDetails(item, category);
+    
+    const url = item.url;
+    console.log(url);
+    const parts = url.split("/").filter(Boolean);
+    const urlID = parts[parts.length - 1];
 
     // Fixed: added return statement with HTML
     return `
       <li class="listlayout-item">
         <article class="list-card favorite-card" data-category="${category}" data-index="${index}">
+          <a href="view.html?category=${category}&id=${urlID}" class="card-link">
           <figure class="card-figure card-image"></figure>
           <div class="card-body">
             <h3 class="card-title">${name}</h3>
@@ -60,6 +66,7 @@ function formatFavoriteItems(items, category) {
               ★ Remove Favorite
             </button>
           </div>
+          </a>
         </article>
       </li>
     `;

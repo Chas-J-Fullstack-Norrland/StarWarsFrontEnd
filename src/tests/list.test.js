@@ -33,6 +33,7 @@ describe("ListView load event", () => {
   beforeEach(async() => {
     // Setup DOM container BEFORE the load event
       document.body.innerHTML = `
+        <form id="filterform" aria-labelledby="filterLegend">
         <h1></h1>
         <div id="list-section"></div>
         <input id="searchInput" />

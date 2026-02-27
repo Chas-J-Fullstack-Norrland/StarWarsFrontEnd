@@ -1,15 +1,13 @@
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 
-
-window.addEventListener("load", () => {
-    document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="./styles/header-footer.css">`);
+//document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="./styles/header-footer.css">`);
     
     header.innerHTML = `
-        <section id="user-section">
-          <a href="#" class="logo">Star Wars API</a>
+        <section id="header-logo-section">
+          <a href="/" class="logo">Star Wars API</a>
           
-          <span id="status">Online</span>
+          <span id="status">ONLINE</span>
       </section>
 
       <nav id="category_nav">
@@ -26,4 +24,25 @@ window.addEventListener("load", () => {
     footer.innerHTML = `
         <p>Chas Academy - Norrland 2026</p>`;
 
+
+let statusIcon = null;
+
+function updateConnected() {
+    if (!statusIcon) return;
+
+    if (navigator.onLine) {
+        statusIcon.textContent = "ONLINE";
+        document.body.className = "online";
+    } else {
+        statusIcon.textContent = "OFFLINE";
+        document.body.className = "offline";
+    }
+}
+
+window.addEventListener("load", () => {
+    statusIcon = document.querySelector("#status");
+    updateConnected();
 });
+
+window.addEventListener("online", updateConnected);
+window.addEventListener("offline", updateConnected);
