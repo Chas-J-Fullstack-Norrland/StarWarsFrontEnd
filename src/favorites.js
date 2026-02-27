@@ -30,7 +30,7 @@ function renderAllFavorites(containerId) {
     if (items.length === 0) return;  // Fixed: added return statement
 
     html += `
-      <section class="favorites-category">
+      <section class="favorites-category list-section">
         <h2 class="category-title">${capitalizeFirst(category)}</h2>
         <ul class="listlayout">
           ${formatFavoriteItems(items, category)}
@@ -66,6 +66,7 @@ function formatFavoriteItems(items, category) {
               ★ Remove Favorite
             </button>
           </div>
+          </a>
         </article>
       </li>
     `;
