@@ -42,7 +42,8 @@
     background-color: #ddd;
 }
 
-#list-section {
+
+.list-section{
     min-height: 800px;
     display: block;
     margin-inline-start: .5em;
