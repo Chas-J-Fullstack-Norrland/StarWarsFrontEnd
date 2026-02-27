@@ -294,7 +294,7 @@ function formatVehicleData(data) {
         const id = translateURL(item)
         return `<li class="listlayout-item">
                     <article class="list-card">
-                        <a href="view.html?category=vehicle&id=${id}" class="card-link">
+                        <a href="view.html?category=vehicles&id=${id}" class="card-link">
                             <figure class="card-figure card-image"></figure>
                             <div class="card-body">
                                 <h2 class="card-title">${item.name}</h2>
