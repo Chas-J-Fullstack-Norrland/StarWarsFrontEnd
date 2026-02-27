@@ -8,32 +8,28 @@
     <title>starwarsfrontend</title>
   </head>
   <body>
-    <header id="header">
-        <div class="header-skeleton"></div>
-    </header>
+    <header id="header"></header>
 
     <!--  this header will be be the name of the item being viewed -->
     
     <main>
-      <div id="item-header">
+      <section id="item-header">
           <div>
               <h1 id="item-name-header">Loading...</h1>
               <ul id="item-attributes"></ul>
           </div>
           <span>
-              <div class="image-wrapper">
-                <img id="item-thumbnail" alt="Thumbnail" width="840" height="840"  src="https://dummyimage.com/840/fff/0011ff.png&text=placeholder" />
-              </div>
-              <button class="favorite-button" id="favorite-button">☆ Add Favorite</button>
+              <img id="item-thumbnail" alt="item-thumbnail"  src="https://dummyimage.com/840/fff/0011ff.png&text=placeholder" />
+              <button id="favorite-button">favorite</button>
           </span>        
           
-      </div>
+        </section>
       <hr>
       <section id="item-textbox"></section>
     </main>
 
 
-    <footer><div class="header-skeleton"></div></footer>
+    <footer></footer>
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/view.js"></script>
   </body>

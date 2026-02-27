@@ -53,7 +53,7 @@ describe("Favorites Page", () => {
     await new Promise(process.nextTick);
 
     // People
-    const peopleSection = container.querySelector(".favorites-category h1");
+    const peopleSection = container.querySelector(".favorites-category h2");
     expect(peopleSection.textContent).toContain("People");
     expect(container.innerHTML).toContain("Luke");
     expect(container.innerHTML).toContain("Height: 172cm");

@@ -32,6 +32,7 @@ function updateFavoriteButton() {
         const favorited = isFavorite(category, currentItem);
         favoriteButton.textContent = favorited ? "★ Remove Favorite" : "☆ Add Favorite";
         favoriteButton.classList.toggle("favorited", favorited);
+        favoriteButton.setAttribute("aria-pressed", String(favorited));
     }
 }
 
