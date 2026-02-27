@@ -18,7 +18,7 @@ function saveAllFavorites(all) {
 }
 
 function getItemId(item) {
-  return item.url || item.name || item.title || JSON.stringify(item);
+  return item.url || item.name || item.title || "no-id";
 }
 
 export function loadFavorites(category) {

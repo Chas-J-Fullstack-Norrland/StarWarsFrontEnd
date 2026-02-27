@@ -22,25 +22,38 @@ window.addEventListener("load", () => {
 });
 
 favoriteButton?.addEventListener("click", () => {
-    if (currentCategory && currentId) {
-        toggleFavorite(currentCategory, currentId);
+    if (currentCategory && currentItemData) {
+        toggleFavorite(currentCategory, currentItemData);
         updateFavoriteButton();
+
+        console.log("Sparat till favorites!", localStorage.getItem("starwars_favorites"));
+    } else {
+        console.warn("Kunde inte spara: Kategori eller data saknas.");
     }
 });
 
 function updateFavoriteButton() {
     if (favoriteButton && currentCategory && currentId) {
         const favorited = isFavorite(currentCategory, currentId);
-        favoriteButton.textContent = favorited ? "★ Remove from Favorites" : "☆ Add to Favorites";
+        favoriteButton.textContent = favorited ? "Remove" : "Favorite";
         favoriteButton.classList.toggle("favorited", favorited);
     }
 }
 
+let currentItemData = null;
+
 function renderResponse(category,id) {
     const endpoint = category+"/"+id;
+
+    currentCategory = category;
+    currentId = id;
+
     fetchRequest(endpoint)
         .then(item => {
+            currentItemData = item;
+
             mapItem(item,category);
+            updateFavoriteButton();
         })
         .catch(error => {
             console.error(`Error fetching ${endpoint}:`, error);

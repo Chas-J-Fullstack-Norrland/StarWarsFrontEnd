@@ -8,7 +8,7 @@ export async function fetchRequest(endpoint) {
 
   } catch (error) {
     if (error instanceof TypeError) {
-      console.error("Failed to fetch ${endpoint}:", error);
+      console.error(`Failed to fetch ${endpoint}:`, error);
       return JSON.parse(localStorage.getItem(endpoint)) || [];
     }
     else {

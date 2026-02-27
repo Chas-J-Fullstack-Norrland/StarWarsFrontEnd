@@ -52,12 +52,11 @@ function formatFavoriteItems(items, category) {
     return `
       <li class="listlayout-item">
         <article class="list-card favorite-card" data-category="${category}" data-index="${index}">
-          <figure class="card-figure card-image"></figure>
           <div class="card-body">
             <h3 class="card-title">${name}</h3>
             ${details}
             <button class="favorite-button is-favorite remove-favorite-btn">
-              ★ Remove Favorite
+              Remove
             </button>
           </div>
         </article>

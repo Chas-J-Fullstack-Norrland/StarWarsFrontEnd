@@ -101,12 +101,26 @@
 }
 
 .card-body {
-    padding: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 0.1rem;
+    padding: 1.2rem 2rem;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-left: 0;
 }
 
-.card-body p {
-    margin-block-start: 0;
-    margin-block-end: 0.5rem;
+.card-data {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace; 
+    display: flex;
+    align-items: center;
+}
+
+.card-data::before {
+    content: "> ";
+    color: #ffe81f;
+    margin-right: 8px;
+    font-weight: bold;
 }
