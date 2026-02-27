@@ -59,6 +59,11 @@ h1 {
     width: 100%;
 }
 
+#favorite-button.favorited{
+    background-color: yellow;
+    border-color: black;
+}
+
 
 
 #item-textbox {
