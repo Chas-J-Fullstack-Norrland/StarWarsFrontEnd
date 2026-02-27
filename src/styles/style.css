@@ -147,3 +147,30 @@ button:focus-visible {
 }
 
 }
+.home-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.home-hero {
+    margin-bottom: 3rem;
+}
+
+.glow-text {
+    color: #ffe81f;
+    text-shadow: 0 0 10px rgba(255, 232, 31, 0.5);
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.favorites-teaser {
+    margin-top: 4rem;
+    color: #aaaaaa;
+}

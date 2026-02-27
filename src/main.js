@@ -5,19 +5,16 @@ import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 
 let app = document.querySelector('#app');
-if (app){
+if (app) {
   app.innerHTML = `
-    <div>
-      <a href="https://vite.dev" target="_blank">
-        <img src="${viteLogo}" class="logo" alt="Vite logo" />
-      </a>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-        <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-      </a>
-      <h1>Hello Vite!</h1>
-      <p class="read-the-docs">
-        Click on the Vite logo to learn more
-      </p>
+    <div class="home-container">
+      <div class="home-hero">
+        <h1 class="glow-text">STAR WARS DATA BANK</h1>
+        <p class="subtitle">Access the archives of the Galactic Republic and beyond</p>
+      </div>
+      <div class="favorites-teaser">
+        <p>Looking for something specific? Review your <a href="favorites.html">Favorites</a>.</p>
+      </div>
     </div>
   `;
 }
