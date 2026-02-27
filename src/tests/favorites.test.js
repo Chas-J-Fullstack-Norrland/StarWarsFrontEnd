@@ -22,7 +22,9 @@ describe("Favorites Page", () => {
   let container;
 
   beforeEach(() => {
-    document.body.innerHTML = `<div id="favorites-container"></div>`;
+    document.body.innerHTML = `
+    <h1><h1>
+    <div id="favorites-container"></div>`;
     container = document.getElementById("favorites-container");
     vi.resetAllMocks();
   });
@@ -51,7 +53,7 @@ describe("Favorites Page", () => {
     await new Promise(process.nextTick);
 
     // People
-    const peopleSection = container.querySelector(".favorites-category h2");
+    const peopleSection = container.querySelector(".favorites-category h1");
     expect(peopleSection.textContent).toContain("People");
     expect(container.innerHTML).toContain("Luke");
     expect(container.innerHTML).toContain("Height: 172cm");

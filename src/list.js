@@ -16,6 +16,8 @@ let viewState = {
     sortDir: "asc"
 };
 
+const categoryHeader = document.querySelector("h1");
+
 window.addEventListener("load", () => {
     const urlParams = new URLSearchParams(window.location.search);
     renderList(urlParams.get("category"), "list-section");
@@ -220,9 +222,10 @@ function generateSortDropdown(keys) {
 
 
 function mapitems(data,endpoint) {
-
+    categoryHeader.innerText = endpoint;
 
 switch (endpoint) {
+    
     case "starships":
         return formatStarshipData(data);
     case "planets":
