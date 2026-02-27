@@ -13,11 +13,8 @@ let currentId = null;
 
 
 
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams.get("category"));
-        console.log(urlParams.get("id"));
-    console.log(window.location.search)
     renderResponse(urlParams.get("category"),urlParams.get("id"));
 });
 

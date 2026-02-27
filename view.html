@@ -8,7 +8,9 @@
     <title>starwarsfrontend</title>
   </head>
   <body>
-    <header id="header"></header>
+    <header id="header">
+        <div class="header-skeleton"></div>
+    </header>
 
     <!--  this header will be be the name of the item being viewed -->
     
@@ -19,7 +21,9 @@
               <ul id="item-attributes"></ul>
           </div>
           <span>
-              <img id="item-thumbnail" alt="Thumbnail"  src="https://dummyimage.com/840/fff/0011ff.png&text=placeholder" />
+              <div class="image-wrapper">
+                <img id="item-thumbnail" alt="Thumbnail" width="840" height="840"  src="https://dummyimage.com/840/fff/0011ff.png&text=placeholder" />
+              </div>
               <button id="favorite-button">favorite</button>
           </span>        
           
@@ -29,7 +33,7 @@
     </main>
 
 
-    <footer></footer>
+    <footer><div class="header-skeleton"></div></footer>
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/view.js"></script>
   </body>
