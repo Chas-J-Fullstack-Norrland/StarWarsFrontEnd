@@ -8,7 +8,9 @@
     <title>starwarsfrontend</title>
   </head>
   <body>
-    <header id="header"></header>
+    <header id="header">
+        <div class="header-skeleton"></div>
+    </header>
     <section id="controls">
         <div>
             <!-- 🔎 Search -->
@@ -21,7 +23,7 @@
         <hr>
         <div>
             <!-- 🔽 Filter Key -->
-            <select id="filterKey">
+            <select id="filterKey"  class="keyselection">
                 <option value="">Filter By...</option>
             </select>
 
@@ -55,7 +57,7 @@
         <hr>
         <div>
             <!-- 🔽 Sort -->
-            <select id="sortSelect">
+            <select id="sortSelect" class="keyselection" >
                 <option value="">Sort By...</option>
             </select>
             <select id="sortDirection">
@@ -83,7 +85,7 @@
     </main>
 
 
-    <footer></footer>
+    <footer><div class="header-skeleton"></div></footer>
     <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/list.js"></script>
   </body>
