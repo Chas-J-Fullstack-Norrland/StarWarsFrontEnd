@@ -24,12 +24,8 @@ const footer = document.querySelector("footer");
     footer.innerHTML = `
         <p>Chas Academy - Norrland 2026</p>`;
 
-    statusIcon = document.querySelector("#status");
-    updateConnected(); 
 
-});
-
-let statusIcon;
+let statusIcon = null;
 
 function updateConnected() {
     if (!statusIcon) return;
