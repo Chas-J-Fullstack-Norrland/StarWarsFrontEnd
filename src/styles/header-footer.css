@@ -7,6 +7,14 @@
   text-align: center;
 }
 
+.headerskeleton{
+    height: 200px;
+}
+
+.footerskeleton{
+    height: 200px;
+}
+
 #category_nav a {
   background: rgba(255,255,255,0.2);
   padding: 8px 16px;
