@@ -2,7 +2,7 @@
   display: block;
   flex-wrap: wrap;    
   gap: 12px;
-  margin-top: 12px;
+  margin-top: 9px;
   text-align: center;
 }
 
@@ -13,13 +13,12 @@
   font-size: 0.5em;
   font-weight: 200;
   text-decoration: none;
-  color: white;
+  color: rgb(230, 255, 2);
   transition: background-color 0.2s;
 }
 
 #category_nav a:hover {
   background: rgba(255,255,255,0.4);
-  text-decoration: underline;
 }
 
 #user {
@@ -34,7 +33,7 @@
 #user-section {
     margin-right: 8px;
     align-items: center;
-    color: yellow;  
+    color: yellow;
 }
 
 #user-section a {
@@ -53,7 +52,7 @@
 }
 
 #user-button {
-    background: #3f3f32;
+    background: #383838;
     color: yellow;
     border: none;
     border-radius: 4px;

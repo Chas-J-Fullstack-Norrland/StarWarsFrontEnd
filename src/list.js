@@ -50,22 +50,14 @@ switch (endpoint) {
 }
 
 function formatFilmsData(data) {
-    
     return data.map(item => {
         const id = translateURL(item)
-        return `<li class="listlayout-item">
-                    <article class="list-card">
+        return `
+            <li class="listlayout-item">
                         <a href="view.html?category=films&id=${id}" class="card-link">
-                            <figure class="card-figure card-image"></figure>
-                            <div class="card-body">
-                                <h2 class="card-title">${item.title}</h2>
-                                <p class="card-data">Episode: ${item.episode_id}</p>
-                                <p class="card-data">Release Date: ${item.release_date}</p>
-                                <p class="card-data">Director: ${item.director}</p>
-                                <p class="card-data">Producer: ${item.producer}</p>
-                            </div>
+                            <span class="card-title">${item.title}</span>
+                            <span class="card-arrow">→</span>
                         </a>
-                    </article>
                 </li>`
     }).join("");
 }
@@ -75,19 +67,10 @@ function formatSpeciesData(data) {
     return data.map(item => {
         const id = translateURL(item)
         return `<li class="listlayout-item">
-                    <article class="list-card">
                         <a href="view.html?category=species&id=${id}" class="card-link">
-                            <figure class="card-figure card-image"></figure>
-                            <div class="card-body">
-                                <h2 class="card-title">${item.name}</h2>
-                                <p class="card-data">Classification: ${item.classification}</p>
-                                <p class="card-data">Designation: ${item.designation}</p>
-                                <p class="card-data">Average Height: ${item.average_height}cm</p>
-                                <p class="card-data">Average Lifespan: ${item.average_lifespan} years</p>
-                                <p class="card-data">Language: ${item.language}</p>
-                            </div>
+                                <span class="card-title">${item.name}</span>
+                                <span class="card-arrow">→</span>
                         </a>
-                    </article>
                 </li>`
     }).join("");
 }
@@ -98,19 +81,10 @@ function formatVehicleData(data) {
     return data.map(item => {
         const id = translateURL(item)
         return `<li class="listlayout-item">
-                    <article class="list-card">
-                        <a href="view.html?category=vehicle&id=${id}" class="card-link">
-                            <figure class="card-figure card-image"></figure>
-                            <div class="card-body">
-                                <h2 class="card-title">${item.name}</h2>
-                                <p class="card-data">Model: ${item.model}</p>
-                                <p class="card-data">Manufacturer: ${item.manufacturer}</p>
-                                <p class="card-data">Length: ${item.length}m</p>
-                                <p class="card-data">Crew: ${item.crew}</p>
-                                <p class="card-data">Vehicle Class: ${item.vehicle_class}</p>
-                            </div>
+                        <a href="view.html?category=vehicles&id=${id}" class="card-link">
+                                <span class="card-title">${item.name}</span>
+                                <span class="card-arrow">→</span>
                         </a>
-                    </article>
                 </li>`
     }).join("");
 }
@@ -120,20 +94,10 @@ function formatStarshipData(data) {
     return data.map(item => {
         const id = translateURL(item)
         return `<li class="listlayout-item">
-                    <article class="list-card">
                         <a href="view.html?category=starships&id=${id}" class="card-link">
-                            <figure class="card-figure card-image"></figure>
-                            <div class="card-body">
-                                <h2 class="card-title">${item.name}</h2>
-                                <p class="card-data">Model: ${item.model}</p>
-                                <p class="card-data">Manufacturer: ${item.manufacturer}</p>
-                                <p class="card-data">Length: ${item.length}m</p>
-                                <p class="card-data">Crew: ${item.crew}</p>
-                                <p class="card-data">Starship Class: ${item.starship_class}</p>
-                                <p class="card-data">Hyperdrive Rating: ${item.hyperdrive_rating}</p>
-                            </div>
+                                <span class="card-title">${item.name}</span>
+                                <span class="card-arrow">→</span>
                         </a>
-                    </article>
                 </li>`
     }).join("");
 }
@@ -143,21 +107,11 @@ function formatPlanetsData(data) {
 
     return data.map(item => {
         const id = translateURL(item)
-        
         return `<li class="listlayout-item">
-                    <article class="list-card">
                         <a href="view.html?category=planets&id=${id}" class="card-link">
-                            <figure class="card-figure card-image"></figure>
-                            <div class="card-body">
-                                <h2 class="card-title">${item.name}</h2>
-                                <p class="card-data">Diameter: ${item.diameter}km</p>
-                                <p class="card-data">Gravity: ${item.gravity}</p>
-                                <p class="card-data">Climate: ${item.climate}</p>
-                                <p class="card-data">Day-Length: ${item.rotation_period} hours</p>
-                                <p class="card-data">Population: ${item.population}</p>
-                            </div>
+                                <span class="card-title">${item.name}</span>
+                                <span class="card-arrow">→</span>
                         </a>
-                    </article>
                 </li>`
     }).join("");
 }
@@ -169,17 +123,10 @@ function formatPeopleData(data) {
     const id = translateURL(item)
 
         return `<li class="listlayout-item">
-                    <article class="list-card">
                         <a href="view.html?category=people&id=${id}" class="card-link">
-                            <figure class="card-figure card-image"></figure>
-                            <div class="card-body">
-                                <h2 class="card-title">${item.name}</h2>
-                                <p class="card-data">Height: ${item.height}cm</p>
-                                <p class="card-data">Mass: ${item.mass}kg</p>
-                                <p class="card-data">birth year: ${item.birth_year}</p>
-                            </div>
+                                <span class="card-title">${item.name}</spawn>
+                                <span class="card-arrow">→</span>
                         </a>
-                    </article>
                 </li>`
     }).join("");
 }
@@ -212,6 +159,11 @@ function translateURL(item){
       toggleFavorite(category, item);
       updateButton();
     });
+
+    button.style.width = "auto";
+    button.style.margin = "0 1rem";
+    card.style.display = "flex";
+    card.style.alignItems = "center";
 
     card.appendChild(button);
   });
