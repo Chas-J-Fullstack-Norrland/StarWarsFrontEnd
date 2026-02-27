@@ -48,7 +48,9 @@ function formatFavoriteItems(items, category) {
     const name = item.name || item.title || "Unknown";
     const details = getItemDetails(item, category);
     
-    const parts = item.url.split("/").filter(Boolean);
+    const url = item.url;
+    console.log(url);
+    const parts = url.split("/").filter(Boolean);
     const urlID = parts[parts.length - 1];
 
     // Fixed: added return statement with HTML
