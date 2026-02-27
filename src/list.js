@@ -159,6 +159,13 @@ function renderActiveFilters() {
 
 
 const addFilterButton = document.getElementById("addFilterBtn");
+const filterform = document.getElementById("filterform");
+
+filterform.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    addFilterButton.click();
+});
 
 addFilterButton.addEventListener("click", () => {
     const key = document.getElementById("filterKey").value;
@@ -222,7 +229,7 @@ function generateSortDropdown(keys) {
 
 
 function mapitems(data,endpoint) {
-    categoryHeader.innerText = endpoint;
+    categoryHeader.innerText = endpoint.charAt(0).toUpperCase() + endpoint.slice(1);;
 
 switch (endpoint) {
     
@@ -407,6 +414,8 @@ function translateURL(item){
       toggleFavorite(category, item);
       updateButton();
     });
+
+
 
     card.appendChild(button);
   });
