@@ -15,7 +15,7 @@ function renderAllFavorites(containerId) {
   if (categories.length === 0 || categories.every(cat => allFavorites[cat].length === 0)) {
     container.innerHTML = `
       <div class="no-favorites">
-        <h1>No Favorites Yet</h2>
+        <h1>No Favorites Yet</h1>
         <p>Browse categories and add items to your favorites!</p>
         <a href="index.html" class="back-link">Back to Home</a>
       </div>
@@ -31,7 +31,7 @@ function renderAllFavorites(containerId) {
 
     html += `
       <section class="favorites-category">
-        <h1 class="category-title">${capitalizeFirst(category)}</h2>
+        <h2 class="category-title">${capitalizeFirst(category)}</h2>
         <ul class="listlayout">
           ${formatFavoriteItems(items, category)}
         </ul>
