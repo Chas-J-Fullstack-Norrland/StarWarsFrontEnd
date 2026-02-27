@@ -157,23 +157,19 @@ function renderActiveFilters() {
 }
 
 
-
-const addFilterButton = document.getElementById("addFilterBtn");
 const filterform = document.getElementById("filterform");
 
 filterform.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    addFilterButton.click();
-});
-
-addFilterButton.addEventListener("click", () => {
     const key = document.getElementById("filterKey").value;
     const type = document.getElementById("filterType").value;
     const operator = document.getElementById("filterOperator").value;
     const value = document.getElementById("filterValue").value.trim();
 
     if (!key || !type || !value) {
+        console.log(value)
+        console.log(key)
+        console.log(type)
         alert("Please select a key and type, and enter a value.");
         return;
     }
@@ -190,6 +186,7 @@ addFilterButton.addEventListener("click", () => {
     // Clear the value input for next filter
     document.getElementById("filterValue").value = "";
 });
+
 
 document.getElementById("sortSelect").addEventListener("change", (e) => {
     viewState.sortKey = e.target.value;
