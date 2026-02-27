@@ -1,9 +1,7 @@
 const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 
-
-window.addEventListener("load", () => {
-    document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="./styles/header-footer.css">`);
+//document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="./styles/header-footer.css">`);
     
     header.innerHTML = `
         <section id="header-logo-section">
