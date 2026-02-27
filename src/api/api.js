@@ -28,6 +28,10 @@ export async function fetchRequest(endpoint) {
 }
 
 export async function resolveAPILink(string) {
+
+    if(!string){
+      return "null";
+    }
     const url = new URL(string);
     const parts = url.pathname.split("/").filter(Boolean);
 
