@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
             <label for="user" class="visually-hidden">Username</label>
             <input type="text" id="user" name="user"/>
             <button id="user-button">Set User</button>
-            <span id="status">Online</span>
+            <span id="status" role="alert">Online</span>
           </div>
       </section>
 
