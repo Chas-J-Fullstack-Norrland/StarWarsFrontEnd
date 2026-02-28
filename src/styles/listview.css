@@ -134,6 +134,10 @@
 
 }
 
+.keyselection{
+    min-width: 180px;
+}
+
 @media (min-width: 551px) {
     .listlayout-item {
        width: calc(33% - 0.95rem);
