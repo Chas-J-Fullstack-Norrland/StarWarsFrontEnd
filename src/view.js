@@ -1,6 +1,8 @@
 import "./styles/view.css";
 import {resolveAPILink,fetchRequest} from "./api/api.js";
 import { isFavorite, toggleFavorite } from "./favoritesStorage.js";
+import { describe, it, expect } from 'vitest';
+
 
 const nameHeader = document.getElementById("item-name-header");
 const attributesList = document.getElementById("item-attributes");
@@ -180,4 +182,3 @@ function formatStarshipData(item){
                 <li>Consumables: ${item.consumables}</li>
                 `;
 }
-

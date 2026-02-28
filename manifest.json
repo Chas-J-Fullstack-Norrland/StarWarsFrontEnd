@@ -3,17 +3,17 @@
   "name": "Star Wars Galactic Data Bank",
   "icons": [
     {
-      "src": "/favicon-192.png",
+      "src": "favicon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/favicon-512.png",
+      "src": "favicon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/StarWarsFrontEnd/index.html",
   "background_color": "#000000",
   "display": "standalone",
   "theme_color": "#ffe81f",

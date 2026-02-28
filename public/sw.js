@@ -1,20 +1,28 @@
 const CACHE_NAME = 'sw-v1';
+const BASE = '/StarWarsFrontEnd/'; 
+
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/favorites.html',
-  '/view.html',
-  '/list.html',
-  '/src/main.js',
-  '/src/api/api.js',
-  '/styles/style.css'
+  BASE,
+  `${BASE}index.html`,
+  `${BASE}favorites.html`,
+  `${BASE}view.html`,
+  `${BASE}list.html`,
+  `${BASE}src/main.js`,
+  `${BASE}src/api/api.js`,
+  `${BASE}styles/style.css`
 ];
 
 // Installerar service workern och sparar filer i cachen
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      return Promise.all(
+        ASSETS_TO_CACHE.map(url => {
+          return cache.add(url).catch(err => {
+            console.error(`Kunde inte fånga essensen av: ${url}`, err);
+          });
+        })
+      );
     })
   );
 });

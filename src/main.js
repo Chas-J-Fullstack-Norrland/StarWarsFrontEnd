@@ -108,8 +108,10 @@ function renderSearchResults(items, category, container) {
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((reg) => console.log('Service Worker registrerad!', reg))
-      .catch((err) => console.error('Kunde inte registrera SW:', err));
+    const swPath = `${import.meta.env.BASE_URL}sw.js`; 
+
+    navigator.serviceWorker.register(swPath)
+      .then(reg => console.log('SW registrerad på:', reg.scope))
+      .catch(err => console.error('SW-fel:', err));
   });
 }
