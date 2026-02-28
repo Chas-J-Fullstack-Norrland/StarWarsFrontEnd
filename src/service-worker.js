@@ -1,43 +1,58 @@
-import {precacheAndRoute} from 'workbox-precaching';
+import { precacheAndRoute, matchPrecache } from 'workbox-precaching'
+import { registerRoute } from 'workbox-routing'
+import { NetworkFirst } from 'workbox-strategies'
 
-precacheAndRoute(self.__WB_MANIFEST || []);
+/**
+ *  Precache build assets
+ *  Ignore query parameters when matching.
+ */
+precacheAndRoute(self.__WB_MANIFEST, {
+  ignoreURLParametersMatching: [/.*/]
+})
 
-const cacheName = 'Chas_Swapi-Cache-v1';
+/**
+ *  Handle navigation requests (multi-page app safe handling)
+ *    - Try network first
+ *    - If offline, strip query string
+ *    - Serve matching precached HTML
+ */
+registerRoute(
+  ({ request }) => request.mode === 'navigate',
+  async ({ event }) => {
+    try {
+      // network first
+      return await fetch(event.request)
+    } catch (error) {
+        console.error(error);
+      // Offline → strip query string
+      const url = new URL(event.request.url)
+      url.search = ''
 
-self.addEventListener('fetch',event  => {
-    const request = event.request;
+      // Try matching precached pathname
+      const cachedResponse = await matchPrecache(url.pathname)
 
-    if(request.url.endsWith("api/api.js")){
-        event.respondWith(
-            caches.match(request).then(cached=>{
-                if(cached) return cached;
+      if (cachedResponse) {
+        return cachedResponse
+      }
 
-                return fetch(request).then(response=>{
-                    caches.open(cacheName).then(cache=> cache.put(request,response.clone()));
-                    return response;
-                }).catch(()=>{
-                    return new Response("online api not reachable while offline",{
-                        headers:{'Content-Type':'application/javascript'}
-                    });
-                });
-            })
-        );
-        return;
-    };
-    if(request.url.includes('swapi.dev/api/')){  
-        event.respondWith(
-            fetch(request).then(response=>{
-                if(request.method === 'GET' && response.status === 200){
-                    const responseClone = response.clone();
-                    caches.open(cacheName).then(cache => cache.put(request,responseClone));
-                }
-                return  response;
-            }).catch(()=>caches.match(request))
-        );
-    return
+      // If nothing found, fail gracefully
+      return new Response('Offline and page not cached.', {
+        status: 503,
+        headers: { 'Content-Type': 'text/plain' }
+      })
     }
+  }
+)
 
-    event.respondWith(
-        caches.match(request).then(cached=>cached||fetch(request))
-    );
-});
+/**
+ * Runtime caching for SWAPI responses,  Network first
+ */
+registerRoute(
+  ({ url }) => url.href.includes('swapi.dev/api/'),
+  new NetworkFirst({
+    cacheName: 'Chas_Swapi-Cache-v1'
+  })
+)
+
+self.skipWaiting()
+self.clients.claim()
