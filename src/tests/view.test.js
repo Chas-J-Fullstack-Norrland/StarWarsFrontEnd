@@ -15,7 +15,7 @@ describe('View module', () => {
       <button class="favorite-button" id="favorite-button">☆ Add Favorite</button>
       <h1 id="item-name-header"></h1>
       <ul id="item-attributes"></ul>
-      <textarea id="item-textbox"></textarea>
+      <section id="item-textbox"></section>
     `;
 
     nameHeader = document.getElementById('item-name-header');
@@ -36,7 +36,7 @@ describe('View module', () => {
         release_date: '1977-05-25',
         director: 'George Lucas',
         producer: 'Gary Kurtz',
-        openingcrawl: 'It is a period of civil war...'
+        opening_crawl: 'It is a period of civil war...'
       };
 
       api.fetchRequest.mockResolvedValue(film);
