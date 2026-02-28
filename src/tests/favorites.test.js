@@ -24,7 +24,9 @@ describe("Favorites Page", () => {
   beforeEach(() => {
     document.body.innerHTML = `
     <h1><h1>
-    <div id="favorites-container"></div>`;
+    <div id="favorites-container"></div>
+    <section id="item-textbox"></section>`;
+
     container = document.getElementById("favorites-container");
     vi.resetAllMocks();
   });
