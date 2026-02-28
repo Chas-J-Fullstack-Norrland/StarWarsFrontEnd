@@ -38,16 +38,23 @@
     font-size: 0.7em;
     font-weight: 500;
     vertical-align: middle;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    opacity: 0.7;
 }
+
 
 body.online #status {
     background: yellow;
     color: black;
+    opacity: 1;
+    transition: color 0.3s ease
 }
 
 body.offline #status {
     background: red;
     color: black;
+    opacity: 1;
+    transition: color 0.3s ease
 }
 
 #header-logo-section {
