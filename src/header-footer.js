@@ -5,7 +5,7 @@ const footer = document.querySelector("footer");
     
     header.innerHTML = `
         <section id="header-logo-section">
-          <a href="/" class="logo">Star Wars API</a>
+          <a href="index.html" class="logo">Star Wars API</a>
           
           <span id="status">ONLINE</span>
       </section>

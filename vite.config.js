@@ -23,6 +23,11 @@ export default defineConfig({
       srcDir: 'src',
       filename: 'service-worker.js',
       injectRegister: "auto",
+
+      injectManifest: {
+          globPatterns: ['**/*.{js,css,html,png,svg,json}']
+        },
+
       manifest:{
         name: 'SWAPI ChasFrontend',
         short_name: 'SWAPI-CHAS',
