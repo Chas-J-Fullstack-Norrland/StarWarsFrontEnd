@@ -23,6 +23,7 @@ registerRoute(
       // network first
       return await fetch(event.request)
     } catch (error) {
+        console.error(error);
       // Offline → strip query string
       const url = new URL(event.request.url)
       url.search = ''
