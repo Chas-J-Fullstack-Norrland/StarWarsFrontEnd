@@ -105,3 +105,11 @@ function renderSearchResults(items, category, container) {
     `;
   }).join("");
 }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((reg) => console.log('Service Worker registrerad!', reg))
+      .catch((err) => console.error('Kunde inte registrera SW:', err));
+  });
+}
