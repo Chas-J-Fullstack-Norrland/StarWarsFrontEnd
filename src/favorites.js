@@ -55,7 +55,7 @@ function formatFavoriteItems(items, category) {
           <div class="card-body">
             <h3 class="card-title">${name}</h3>
             ${details}
-            <button class="favorite-button is-favorite remove-favorite-btn">
+            <button class="favorite-button is-favorite remove-favorite-btn" aria-label="Remove ${name} from favorites">
               Remove
             </button>
           </div>

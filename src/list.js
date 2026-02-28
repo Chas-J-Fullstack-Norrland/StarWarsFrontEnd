@@ -160,11 +160,6 @@ function translateURL(item){
       updateButton();
     });
 
-    button.style.width = "auto";
-    button.style.margin = "0 1rem";
-    card.style.display = "flex";
-    card.style.alignItems = "center";
-
     card.appendChild(button);
   });
 }

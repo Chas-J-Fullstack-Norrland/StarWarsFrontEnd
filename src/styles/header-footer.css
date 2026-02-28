@@ -1,14 +1,29 @@
 #category_nav {
-  display: block;
+  display: flex;
+  list-style: none;
+  border-radius: 20px;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
   flex-wrap: wrap;    
-  gap: 12px;
-  margin-top: 9px;
+  gap: 1rem;
+  margin-top: 1px;
   text-align: center;
+}
+
+#category_nav li {
+    display: inline;
+}
+
+#category_nav li:not(:last-child)::after {
+  content: "|";
+  margin-left: 1rem;
+  color: #555;
 }
 
 #category_nav a {
   background: rgba(255,255,255,0.2);
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.5em;
   font-weight: 200;
@@ -22,6 +37,7 @@
 }
 
 #user {
+    font-size: 0.9rem;
     background: rgba(255,255,255,0.2);
     padding: 8px 8px;
     border-radius: 4px;
@@ -31,6 +47,12 @@
 }
 
 #user-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
     margin-right: 8px;
     align-items: center;
     color: yellow;
@@ -46,12 +68,13 @@
     background: rgba(255,255,255,0.2);
     padding: 8px 16px;
     border-radius: 20px;
-    font-size: 0.5em;
+    font-size: 0.9rem;
     font-weight: 200;
     vertical-align: middle;
 }
 
 #user-button {
+    font-size: 0.9rem;
     background: #383838;
     color: yellow;
     border: none;
@@ -62,4 +85,26 @@
     cursor: pointer;
     vertical-align: middle;
     transition: background-color 0.2s;
+}
+
+#status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#status.online {
+  background-color: rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+#status.offline {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #ff4444;
+  border: 1px solid #ff4444;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }

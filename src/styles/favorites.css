@@ -1,13 +1,18 @@
 /* Favorite Button Styles */
 .favorite-button {
+  margin: 1rem auto 0;
+  width: 200px;
+  max-width: 90%;
+  display: block;
   margin-top: 0.75rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
   border: 1px solid #ffd700;
-  background-color: transparent;
+  background: transparent;
   color: #ffd700;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: all 0.2s;
 }
 
 .favorite-button:hover {

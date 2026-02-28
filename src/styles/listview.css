@@ -19,14 +19,17 @@
 }
 
 #list-section {
-    max-width: 50%;
+    width: 100%;
+    max-width: 800px;
     display: block;
-    margin: 2rem ;
+    margin: 2rem auto;
+    border-radius: 8px;
     height: 600px;
     overflow-y: auto;
     border: 1px solid #333;
     padding: 0;
     background: #1a1a1a;
+    overflow: hidden;
 }
 
 #list-section::-webkit-scrollbar-track {
@@ -70,8 +73,10 @@
 
 .card-link {
     display: flex;
+    width: 100%;
     align-items: center;
-    padding: 0.2rem 1.5rem;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
     text-decoration: none;
     color: #ffe81f;
     transition: background 0.3s ease;
@@ -80,12 +85,21 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
 .list-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: transparent;
-    border: none;
+    border-radius: 8px;
     box-shadow: none;
     width: 100%;
     margin: 0;
+    padding-bottom: 1.5rem;
 }
 
 .list-card button {

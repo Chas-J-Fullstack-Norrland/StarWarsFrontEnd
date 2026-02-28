@@ -12,8 +12,9 @@ if (app) {
         <p class="subtitle">Search the galactic archives</p>
       </div>
 
-      <section class="search-module">
+      <form class="search-module" id="search-form">
         <div class="search-controls">
+          <label for="search-category" class="visually-hidden">Select Category</label>
           <select id="search-category" class="search-select">
             <option value="people">People</option>
             <option value="planets">Planets</option>
@@ -29,7 +30,7 @@ if (app) {
         <div id="search-results-container" class="search-results-box">
              <ul id="search-results-list" class="listlayout"></ul>
         </div>
-      </section>
+      </form>
 
       <div class="favorites-teaser">
         <p>Review your <a href="favorites.html">Favorites</a>.</p>
@@ -45,6 +46,7 @@ function setupSearchLogic() {
   const button = document.getElementById("search-button");
   const categorySelect = document.getElementById("search-category");
   const resultsList = document.getElementById("search-results-list");
+  const form = document.getElementById("search-form");
 
   const performSearch = () => {
     const query = input.value.trim().toLowerCase();
@@ -69,6 +71,11 @@ function setupSearchLogic() {
         resultsList.innerHTML = "<li class='no-results'>Error contacting the archives.</li>";
       });
   };
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    performSearch();
+  });
 
   button.addEventListener("click", performSearch);
   input.addEventListener("keypress", (e) => { if (e.key === "Enter") performSearch(); });
