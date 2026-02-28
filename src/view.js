@@ -81,7 +81,7 @@ function formatFilmsData(item){
                 <li>Release Date: ${item.release_date}</li>
                 <li>Director: ${item.director}</li>
                 <li>Producer: ${item.producer}</li>`;
-    itemTextbox.innerText=item.openingcrawl;
+    itemTextbox.innerText=item.opening_crawl;
 }
 
 async function formatPeopleData(item) {
