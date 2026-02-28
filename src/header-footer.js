@@ -7,7 +7,7 @@ const footer = document.querySelector("footer");
         <section id="header-logo-section">
           <a href="index.html" class="logo">Star Wars API</a>
           
-          <span id="status">ONLINE</span>
+          <span id="status">CHECKING</span>
       </section>
 
       <nav id="category_nav">
@@ -39,10 +39,12 @@ function updateConnected() {
     }
 }
 
-window.addEventListener("load", () => {
-    statusIcon = document.querySelector("#status");
-    updateConnected();
-});
+statusIcon = document.querySelector("#status");
+updateConnected();
 
 window.addEventListener("online", updateConnected);
 window.addEventListener("offline", updateConnected);
+
+window.addEventListener("pageshow", () => {
+  updateConnected();
+});
