@@ -59,12 +59,10 @@ function renderResponse(category, id) {
 }
 
 function renderUnavailableState() {
-    console.log("Unavailable")
     currentItem = null;
-
     const isOnline = navigator.onLine;
 
-    nameHeader.textContent = isOnline
+    nameHeader.innerText = isOnline
         ? "Unable to Load Item"
         : "Not Available Offline";
 
