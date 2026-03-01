@@ -62,11 +62,12 @@ function formatFavoriteItems(items, category) {
           <div class="card-body">
             <h3 class="card-title">${name}</h3>
             ${details}
-            <button class="favorite-button is-favorite remove-favorite-btn">
-              ★ Remove Favorite
-            </button>
+
           </div>
           </a>
+          <button class="favorite-button is-favorite remove-favorite-btn">
+            ★ Remove Favorite
+          </button>
         </article>
       </li>
     `;
