@@ -113,7 +113,7 @@ describe('View module', () => {
       window.history.pushState({}, '', '?category=unknown&id=1');
       await window.dispatchEvent(new Event('DOMContentLoaded'));
 
-      expect(nameHeader.innerText).toBe('Failed to load data.');
+      expect(nameHeader.innerText).toBe('Unable to Load Item');
     });
   });
 });
