@@ -8,7 +8,6 @@ const ASSETS_TO_CACHE = [
   `${BASE}view.html`,
   `${BASE}list.html`,
   `${BASE}assets/main.js`, 
-  `${BASE}assets/api.js`,
   `${BASE}assets/style.css`,
   `${BASE}assets/header-footer.css`,
   `${BASE}assets/favorites.css`,
