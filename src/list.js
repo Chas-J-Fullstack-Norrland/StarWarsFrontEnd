@@ -29,7 +29,14 @@ function renderList(endpoint, containerId) {
 
     fetchRequest(endpoint)
         .then(data => {
-            currentData = data; // store original data
+            if (!data || !Array.isArray(data) || data.length === 0) {
+                if (!navigator.onLine) {
+                    renderListUnavailableState(endpoint);
+                    return;
+                }
+            }
+
+            currentData = data;
             const keys = extractFilterableKeys(data);
             generateFilterDropdown(keys);
             generateSortDropdown(keys);
@@ -37,7 +44,13 @@ function renderList(endpoint, containerId) {
         })
         .catch(error => {
             console.error(`Error fetching ${endpoint}:`, error);
-            container.innerHTML = "<p>Failed to load data.</p>";
+
+            if (!navigator.onLine) {
+                renderListUnavailableState(endpoint);
+            } else {
+                container.innerHTML =
+                    "<p>Something went wrong while loading this category.</p>";
+            }
         });
 }
 
@@ -49,8 +62,28 @@ function renderData(data, containerId) {
     attachFavoriteButtons(container, data, currentCategory);
 }
 
+function renderListUnavailableState(category) {
+    const container = document.getElementById("list-section");
+
+    categoryHeader.innerText =
+        category.charAt(0).toUpperCase() + category.slice(1);
+
+    container.innerHTML = `
+        <div class="offline-message">
+            <h2>⚠ This category is not available offline</h2>
+            <p>
+                Visit this category while online to cache it for offline use.
+            </p>
+        </div>
+    `;
+
+    // Disable controls
+    document.getElementById("controls")?.classList.add("disabled");
+}
+
 
 function updateView() {
+    if (!currentData || currentData.length === 0) return;
     // Start from the original currentData (API order)
     let result = [...currentData];
 
@@ -223,6 +256,8 @@ function generateSortDropdown(keys) {
         select.appendChild(option);
     });
 }
+
+
 
 
 function mapitems(data,endpoint) {

@@ -36,19 +36,51 @@ function updateFavoriteButton() {
     }
 }
 
-function renderResponse(category,id) {
-    const endpoint = category+"/"+id;
+function renderResponse(category, id) {
+    const endpoint = category + "/" + id;
+    
+
     fetchRequest(endpoint)
         .then(item => {
+            console.log(item);
+            if (!item || Object.keys(item).length === 0) {
+                renderUnavailableState();
+                return;
+            }
+
             currentItem = item;
-            mapItem(item,category);
+            mapItem(item, category);
             updateFavoriteButton();
         })
         .catch(error => {
             console.error(`Error fetching ${endpoint}:`, error);
-            nameHeader.innerHTML = "Failed to load data.";
-            favoriteButton.hidden;
+            renderUnavailableState();
         });
+}
+
+function renderUnavailableState() {
+    currentItem = null;
+    const isOnline = navigator.onLine;
+
+    nameHeader.innerText = isOnline
+        ? "Unable to Load Item"
+        : "Not Available Offline";
+
+    attributesList.innerHTML = `
+        <li>${
+            isOnline
+                ? "The server could not be reached."
+                : "This item has not been viewed before."
+        }</li>
+        ${
+            !isOnline
+                ? "<li>Previously opened items are available offline.</li>"
+                : ""
+        }
+    `;
+
+    itemTextbox.textContent = "";
+    favoriteButton.hidden = true;
 }
 
 function mapItem(data,category){
