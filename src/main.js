@@ -115,10 +115,8 @@ function renderSearchResults(items, category, container) {
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    const swPath = `${import.meta.env.BASE_URL}sw.js`; 
-
-    navigator.serviceWorker.register(swPath)
-      .then(reg => console.log('SW registrerad på:', reg.scope))
-      .catch(err => console.error('SW-fel:', err));
+    navigator.serviceWorker.register('/StarWarsFrontEnd/sw.js', { scope: '/StarWarsFrontEnd/' })
+      .then(reg => console.log('Service Worker registrerad med scope:', reg.scope))
+      .catch(err => console.error('Service Worker misslyckades:', err));
   });
 }

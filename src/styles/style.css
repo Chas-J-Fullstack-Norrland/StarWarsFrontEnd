@@ -24,12 +24,11 @@ main {
 html {
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-image: url(background.jpg);
+    background-image: url('/StarWarsFrontEnd/background.jpg');
     background-position: center;
     background-attachment: fixed;
     color: #ffffff;

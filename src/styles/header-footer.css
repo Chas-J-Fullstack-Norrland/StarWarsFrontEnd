@@ -88,23 +88,21 @@
 }
 
 #status {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-#status.online {
-  background-color: rgba(0, 255, 0, 0.2);
-  color: #00ff00;
-  border: 1px solid #00ff00;
-  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.3s ease;
+  margin-left: 8px;
+  opacity: 0.9;
 }
 
 #status.offline {
-  background-color: rgba(255, 0, 0, 0.2);
-  color: #ff4444;
-  border: 1px solid #ff4444;
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+  color: red;
+  text-shadow: 0 0 5px rgb(128, 0, 0, 0.5);
+}
+
+#status.online {
+  color: #00ff00;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
